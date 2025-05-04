@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     env:
-      NODE_VERSION: 18
+      NODE_VERSION: 20
       PNPM_VERSION: 8
     steps:
       - uses: actions/checkout@v4
@@ -27,7 +27,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
       - name: Build
         run: pnpm --filter web build
       - name: Deploy
