@@ -7,7 +7,14 @@
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/images/*.{png,jpg,gif}", "/css/*", "/assets/*"]
+    "exclude": [
+      "/images/*.{png,jpg,gif}",
+      "/css/*",
+      "/assets/*",
+      "/*.js",
+      "/*.css",
+      "/*.json"
+    ]
   },
   "globalHeaders": {
     "content-security-policy": "default-src https: 'unsafe-inline' 'unsafe-eval'; object-src 'none'",
@@ -20,6 +27,8 @@
     ".mjs": "text/javascript",
     ".jsx": "text/javascript",
     ".ts": "text/javascript",
-    ".tsx": "text/javascript"
+    ".tsx": "text/javascript",
+    ".css": "text/css",
+    ".json": "application/json"
   }
 } 
