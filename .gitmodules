@@ -1,0 +1,3 @@
+[submodule "mondial-pack-blueprint"]
+	path = mondial-pack-blueprint
+	url = https://github.com/dn-verimes/mondial-pack-blueprint.git
