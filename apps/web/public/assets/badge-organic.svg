@@ -1,0 +1,6 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="45" fill="#0046BA" opacity="0.1" />
+  <path d="M35 35c15-15 30 0 30 15s-15 15-30 0 0-30 15-30 15 15 0 30-30 0-30-15 15-15 30 0z" fill="none" stroke="#0046BA" stroke-width="2"/>
+  <text x="50" y="85" font-family="Arial" font-size="10" text-anchor="middle" fill="#0046BA">ORGANIC</text>
+</svg>

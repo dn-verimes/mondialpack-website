@@ -1,0 +1,4 @@
+
+Please replace with actual video files:
+- hero-video.mp4: A video showing pharmaceutical manufacturing process
+- about-video.mp4: A drone tour of the manufacturing facility
