@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Button from './Button';
 import { ArrowRight } from 'lucide-react';
@@ -15,8 +14,9 @@ const Hero: React.FC = () => {
           muted
           loop
           playsInline
+          poster="/assets/placeholder.jpg"
         >
-          <source src="/assets/hero-video.mp4" type="video/mp4" />
+          <source src="/assets/Business Video Mondial Pack.mp4" type="video/mp4" />
           {/* Fallback for browsers that don't support video */}
           Your browser does not support the video tag.
         </video>

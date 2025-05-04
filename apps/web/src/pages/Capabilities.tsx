@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from '@/lib/utils';
@@ -9,6 +10,29 @@ import { PenTool, Tablet, Pill, Droplet, Candy, Wine, Package, ScrollText, Box, 
 import { Card, CardContent } from "@/components/ui/card";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import Button from '@/components/Button';
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
 
 // Format specifications data
 const formatSpecs = {
@@ -217,7 +241,6 @@ const FormatSection = () => {
   const [isImagesLoaded, setIsImagesLoaded] = useState(false);
   const [activeTab, setActiveTab] = useState("capsules");
   
-  // Simulate image loading delay
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsImagesLoaded(true);
@@ -225,7 +248,6 @@ const FormatSection = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Parallax effect for images
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -248,86 +270,58 @@ const FormatSection = () => {
             Explore our diverse range of dosage forms designed to meet your specific requirements
           </p>
         </motion.div>
-        
-        <Tabs 
-          defaultValue="capsules" 
-          onValueChange={setActiveTab}
-          className="w-full"
-        >
-          <TabsList className="w-full flex justify-center mb-10 bg-transparent border-b border-gray-200 overflow-x-auto no-scrollbar">
+
+        <Tabs defaultValue="capsules" className="w-full">
+          <TabsList className="grid w-full grid-cols-5 gap-4 mb-8">
             {Object.entries(formatSpecs).map(([key, format]) => (
               <TabsTrigger 
                 key={key} 
                 value={key}
-                className={cn(
-                  "flex items-center gap-2 px-6 py-3 text-secondary data-[state=active]:border-b-2 data-[state=active]:border-primary",
-                  "data-[state=active]:text-primary data-[state=active]:bg-transparent",
-                  "transition-all duration-200 rounded-none"
-                )}
+                className="flex items-center gap-2"
               >
                 {format.icon}
                 {format.title}
               </TabsTrigger>
             ))}
           </TabsList>
-          
+
           {Object.entries(formatSpecs).map(([key, format]) => (
-            <TabsContent 
-              key={key} 
-              value={key}
-              className="focus-visible:outline-none focus-visible:ring-0"
-            >
-              <div className="grid md:grid-cols-5 gap-8">
-                {/* Left column with image - 3/5 width */}
-                <div className="md:col-span-3 rounded-2xl overflow-hidden h-[400px] md:h-[500px] relative">
+            <TabsContent key={key} value={key}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="grid md:grid-cols-2 gap-8"
+              >
+                <div className="relative h-[400px] rounded-xl overflow-hidden">
                   {!isImagesLoaded ? (
-                    <Skeleton className="w-full h-full rounded-2xl bg-[#EFF6FF]" />
+                    <Skeleton className="w-full h-full" />
                   ) : (
-                    <motion.div className="w-full h-full" style={{ y }}>
-                      <img 
-                        src={format.image || "https://placehold.co/1200x800/EFF6FF/0046BA?text=" + format.title}
+                    <motion.div style={{ y }} className="w-full h-full">
+                      <img
+                        src={format.image}
                         alt={format.title}
                         className="w-full h-full object-cover"
-                        loading="lazy"
                       />
                     </motion.div>
                   )}
                 </div>
-                
-                {/* Right column with spec sheet - 2/5 width */}
-                <motion.div 
-                  className="md:col-span-2"
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <motion.div 
-                    className="bg-[#EFF6FF] p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                    whileHover={{ y: -4 }}
-                  >
-                    <h3 className="text-2xl font-medium text-secondary mb-6">{format.title} Specifications</h3>
-                    
-                    <ul className="space-y-4 mb-8">
-                      {format.specs.map((spec, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <span className="text-primary mt-1">•</span>
-                          <span>{spec}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <div className="space-y-4">
-                      <Button className="w-full gap-2">
-                        <Download size={18} />
-                        Download Full Tech Sheet
-                      </Button>
-                      <p className="text-center text-sm text-secondary/70">
-                        Need something custom? <a href="#" className="text-primary underline">Request a prototype</a>
-                      </p>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </div>
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-medium text-secondary">{format.title} Specifications</h3>
+                  <ul className="space-y-3">
+                    {format.specs.map((spec, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <span className="text-primary mt-1">•</span>
+                        <span className="text-secondary/80">{spec}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="group">
+                    Download Technical Sheet
+                    <Download className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
+                  </Button>
+                </div>
+              </motion.div>
             </TabsContent>
           ))}
         </Tabs>
@@ -336,59 +330,45 @@ const FormatSection = () => {
   );
 };
 
-// Packaging Item Component
+// PackagingItem Component
 const PackagingItem = ({ item, index }: { item: any, index: number }) => {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
           viewport={{ once: true, margin: "-5%" }}
-          whileHover={{ y: -5, transition: { duration: 0.2 } }}
-          className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg cursor-pointer transition-all duration-300"
+          className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
         >
-          <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#EFF6FF] mb-4">
-            {item.icon}
-          </div>
-          <h3 className="text-xl font-medium text-secondary mb-2">{item.title}</h3>
-          <p className="text-secondary/70 mb-4">{item.description}</p>
-          <div className="inline-flex items-center text-primary">
-            View specifications <ChevronRight size={16} className="ml-1" />
+          <div className="flex items-start gap-4">
+            <div className="p-3 rounded-lg bg-primary/10">
+              {item.icon}
+            </div>
+            <div>
+              <h3 className="text-xl font-medium text-secondary mb-2">{item.title}</h3>
+              <p className="text-secondary/70">{item.description}</p>
+            </div>
           </div>
         </motion.div>
       </DrawerTrigger>
-      <DrawerContent className="p-6">
-        <div className="max-w-3xl mx-auto">
-          <h3 className="text-2xl font-medium text-secondary mb-4">{item.title} Specifications</h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <div className="bg-[#EFF6FF]/50 backdrop-blur-sm p-6 rounded-2xl">
-                <ul className="space-y-4">
-                  {item.details.map((detail: string, i: number) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="text-primary mt-1">•</span>
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="flex items-center justify-center">
-              <img 
-                src={`https://placehold.co/600x400/EFF6FF/0046BA?text=${item.title}`}
-                alt={item.title}
-                className="rounded-lg max-h-[300px] w-auto"
-              />
-            </div>
-          </div>
-          
-          <div className="mt-8 text-center">
-            <Button variant="outline">
-              Download Technical Specifications
-            </Button>
-          </div>
+      <DrawerContent>
+        <div className="p-6">
+          <h3 className="text-2xl font-medium text-secondary mb-4">{item.title}</h3>
+          <p className="text-secondary/80 mb-6">{item.description}</p>
+          <ul className="space-y-3 mb-6">
+            {item.details.map((detail: string, i: number) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="text-primary mt-1">•</span>
+                <span className="text-secondary/80">{detail}</span>
+              </li>
+            ))}
+          </ul>
+          <Button className="group">
+            Download Technical Sheet
+            <Download className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
+          </Button>
         </div>
       </DrawerContent>
     </Drawer>
@@ -412,7 +392,7 @@ const PackagingSection = () => {
             Protect and present your products with our diverse range of packaging options
           </p>
         </motion.div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {packagingData.map((item, index) => (
             <PackagingItem key={index} item={item} index={index} />
@@ -425,19 +405,60 @@ const PackagingSection = () => {
 
 // Main Capabilities Page Component
 const Capabilities = () => {
+  const [activeTab, setActiveTab] = useState("formats");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const stickyNavRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const handleScroll = () => {
+      if (stickyNavRef.current) {
+        const { top } = stickyNavRef.current.getBoundingClientRect();
+        setIsScrolled(top <= 0);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
       <Header />
-      <HeroSection />
-      <StickyNav />
-      <FormatSection />
-      <PackagingSection />
+      <main>
+        <PageHero 
+          title="Our Capabilities"
+          subtitle="Comprehensive supplement manufacturing solutions for your brand"
+          showButtons={false}
+        />
+        
+        {/* Sticky Navigation */}
+        <div 
+          ref={stickyNavRef}
+          className={cn(
+            "sticky top-0 z-50 bg-white shadow-sm transition-all duration-200",
+            isScrolled ? "py-4" : "py-6"
+          )}
+        >
+          <div className="container">
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="formats">Formats</TabsTrigger>
+                <TabsTrigger value="packaging">Packaging</TabsTrigger>
+              </TabsList>
+              
+              {/* Content Sections */}
+              <TabsContent value="formats" className="mt-0">
+                <FormatSection />
+              </TabsContent>
+              <TabsContent value="packaging">
+                <PackagingSection />
+              </TabsContent>
+            </Tabs>
+          </div>
+        </div>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 };
 

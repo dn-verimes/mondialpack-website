@@ -1,3 +1,4 @@
+This is a placeholder file. Please replace this with an actual image file named 'placeholder.jpg' that will be used as the poster image for the video background.
 
 Please replace with actual video files:
 - hero-video.mp4: A video showing pharmaceutical manufacturing process

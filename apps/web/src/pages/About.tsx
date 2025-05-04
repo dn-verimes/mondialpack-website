@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Clock, Building } from 'lucide-react';
@@ -6,19 +5,12 @@ import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 
 const AboutPage: React.FC = () => {
   // References for scroll animations
-  const heroRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   
-  // Parallax effect for hero section
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-
   // Timeline milestones data
   const timelineMilestones = [
     {
@@ -87,208 +79,179 @@ const AboutPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       <Header />
-      
-      {/* Hero Section */}
-      <div 
-        ref={heroRef} 
-        className="relative w-full h-[100vh] flex items-center justify-center overflow-hidden"
-      >
-        <motion.div 
-          style={{ y: heroY }} 
-          className="absolute inset-0 z-0"
-        >
-          <div className="w-full h-full bg-[url('/assets/about-image.jpg')] bg-cover bg-center" />
-        </motion.div>
-        
-        <div className="absolute inset-0 bg-primary/70 z-10" />
-        
-        <div className="container relative z-20 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-6xl font-medium text-neutral mb-6"
-          >
-            Resilient Innovation Since 1995.
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-neutral/90 max-w-3xl mx-auto"
-          >
-            Our journey through three decades of supplement manufacturing excellence
-          </motion.p>
-        </div>
-      </div>
-      
-      {/* Our Journey Section */}
-      <section ref={timelineRef} className="py-20 bg-white">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-6">
-              Our Journey
-            </h2>
-            <div className="w-24 h-1 bg-primary mx-auto"></div>
-          </div>
-          
-          {/* Timeline */}
-          <motion.div 
-            className="relative"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            {/* Timeline center line */}
-            <div className="absolute left-1/2 top-0 w-0.5 h-full bg-primary/20 transform -translate-x-1/2 hidden md:block"></div>
+      <main>
+        <PageHero 
+          title="Our Story"
+          subtitle="From humble beginnings to industry leader in supplement manufacturing"
+          showButtons={false}
+        />
+        {/* Rest of the About page content */}
+        <section ref={timelineRef} className="py-20 bg-white">
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-6">
+                Our Journey
+              </h2>
+              <div className="w-24 h-1 bg-primary mx-auto"></div>
+            </div>
             
-            {/* Timeline items */}
-            {timelineMilestones.map((item, index) => (
-              <motion.div 
-                key={index} 
-                className="relative mb-16 md:mb-24 last:mb-0"
-                variants={itemVariants}
-              >
-                {/* Mobile version (stack) */}
-                <div className="flex md:hidden mb-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center mr-3">
-                    <Clock size={18} className="text-white" />
-                  </div>
-                  <h3 className="text-xl font-medium text-secondary self-center">{item.year}</h3>
-                </div>
-                
-                {/* Desktop version (side-by-side) */}
-                <div className="hidden md:flex">
-                  {/* Timeline center point */}
-                  <div className="absolute left-1/2 top-0 transform -translate-x-1/2 w-10 h-10 rounded-full bg-white border-2 border-primary flex items-center justify-center z-10">
-                    <Clock size={18} className="text-primary" />
+            {/* Timeline */}
+            <motion.div 
+              className="relative"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              {/* Timeline center line */}
+              <div className="absolute left-1/2 top-0 w-0.5 h-full bg-primary/20 transform -translate-x-1/2 hidden md:block"></div>
+              
+              {/* Timeline items */}
+              {timelineMilestones.map((item, index) => (
+                <motion.div 
+                  key={index} 
+                  className="relative mb-16 md:mb-24 last:mb-0"
+                  variants={itemVariants}
+                >
+                  {/* Mobile version (stack) */}
+                  <div className="flex md:hidden mb-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center mr-3">
+                      <Clock size={18} className="text-white" />
+                    </div>
+                    <h3 className="text-xl font-medium text-secondary self-center">{item.year}</h3>
                   </div>
                   
-                  {/* Content container */}
-                  <div className={cn(
-                    "grid md:grid-cols-2 gap-6 w-full",
-                    "relative"
-                  )}>
-                    {/* Year - alternating sides */}
-                    <div className={cn(
-                      "md:text-right md:pr-16",
-                      index % 2 === 1 && "md:col-start-2 md:text-left md:pl-16 md:pr-0"
-                    )}>
-                      <div className="bg-alice rounded-lg p-5 inline-block glass-morphism">
-                        <h3 className="text-xl font-medium text-secondary">{item.year}</h3>
-                      </div>
+                  {/* Desktop version (side-by-side) */}
+                  <div className="hidden md:flex">
+                    {/* Timeline center point */}
+                    <div className="absolute left-1/2 top-0 transform -translate-x-1/2 w-10 h-10 rounded-full bg-white border-2 border-primary flex items-center justify-center z-10">
+                      <Clock size={18} className="text-primary" />
                     </div>
                     
-                    {/* Content - alternating sides */}
+                    {/* Content container */}
                     <div className={cn(
-                      "md:text-left md:pl-16 self-start",
-                      index % 2 === 1 && "md:col-start-1 md:row-start-1 md:text-right md:pr-16 md:pl-0"
+                      "grid md:grid-cols-2 gap-6 w-full",
+                      "relative"
                     )}>
-                      <div className="bg-white shadow-soft rounded-lg p-5">
-                        <p className="text-secondary/80 whitespace-pre-line">{item.milestone}</p>
+                      {/* Year - alternating sides */}
+                      <div className={cn(
+                        "md:text-right md:pr-16",
+                        index % 2 === 1 && "md:col-start-2 md:text-left md:pl-16 md:pr-0"
+                      )}>
+                        <div className="bg-alice rounded-lg p-5 inline-block glass-morphism">
+                          <h3 className="text-xl font-medium text-secondary">{item.year}</h3>
+                        </div>
                       </div>
+                      
+                      {/* Content - alternating sides */}
+                      <div className={cn(
+                        "md:text-left md:pl-16 self-start",
+                        index % 2 === 1 && "md:col-start-1 md:row-start-1 md:text-right md:pr-16 md:pl-0"
+                      )}>
+                        <div className="bg-white shadow-soft rounded-lg p-5">
+                          <p className="text-secondary/80 whitespace-pre-line">{item.milestone}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Mobile milestone content */}
+                  <div className="md:hidden bg-white shadow-soft rounded-lg p-5 ml-12">
+                    <p className="text-secondary/80 whitespace-pre-line">{item.milestone}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+        
+        {/* Facilities Section */}
+        <section className="py-16 bg-alice">
+          <div className="container">
+            <motion.div 
+              className="max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-10 text-center">
+                Our Facilities
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                {/* Netherlands Facility */}
+                <div className="bg-white rounded-xl p-6 shadow-soft">
+                  <div className="flex items-start">
+                    <Building className="text-primary mr-4 flex-shrink-0 mt-1" size={28} />
+                    <div>
+                      <h3 className="font-medium text-secondary text-xl mb-3">Netherlands Headquarters</h3>
+                      <address className="not-italic text-secondary/80 leading-relaxed">
+                        Mondial Pack B.V.<br />
+                        Rigtersbleek-Aalten 18<br />
+                        7521 RB Enschede<br />
+                        The Netherlands
+                      </address>
                     </div>
                   </div>
                 </div>
                 
-                {/* Mobile milestone content */}
-                <div className="md:hidden bg-white shadow-soft rounded-lg p-5 ml-12">
-                  <p className="text-secondary/80 whitespace-pre-line">{item.milestone}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-      
-      {/* Facilities Section */}
-      <section className="py-16 bg-alice">
-        <div className="container">
-          <motion.div 
-            className="max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-10 text-center">
-              Our Facilities
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              {/* Netherlands Facility */}
-              <div className="bg-white rounded-xl p-6 shadow-soft">
-                <div className="flex items-start">
-                  <Building className="text-primary mr-4 flex-shrink-0 mt-1" size={28} />
-                  <div>
-                    <h3 className="font-medium text-secondary text-xl mb-3">Netherlands Headquarters</h3>
-                    <address className="not-italic text-secondary/80 leading-relaxed">
-                      Mondial Pack B.V.<br />
-                      Rigtersbleek-Aalten 18<br />
-                      7521 RB Enschede<br />
-                      The Netherlands
-                    </address>
+                {/* Spain Facility */}
+                <div className="bg-white rounded-xl p-6 shadow-soft">
+                  <div className="flex items-start">
+                    <Building className="text-primary mr-4 flex-shrink-0 mt-1" size={28} />
+                    <div>
+                      <h3 className="font-medium text-secondary text-xl mb-3">Spain Production Facility</h3>
+                      <address className="not-italic text-secondary/80 leading-relaxed">
+                        Mondial Pack Europe S.L.<br />
+                        Poligono La Moraga, nave 21B<br />
+                        29130 Alhaurín de la Torre<br />
+                        España
+                      </address>
+                    </div>
                   </div>
                 </div>
               </div>
+            </motion.div>
+          </div>
+        </section>
+        
+        {/* What Rebuild Means Section */}
+        <section className="py-16 bg-white">
+          <div className="container">
+            <motion.div 
+              className="max-w-4xl mx-auto text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-10">
+                What the rebuild means for you
+              </h2>
               
-              {/* Spain Facility */}
-              <div className="bg-white rounded-xl p-6 shadow-soft">
-                <div className="flex items-start">
-                  <Building className="text-primary mr-4 flex-shrink-0 mt-1" size={28} />
-                  <div>
-                    <h3 className="font-medium text-secondary text-xl mb-3">Spain Production Facility</h3>
-                    <address className="not-italic text-secondary/80 leading-relaxed">
-                      Mondial Pack Europe S.L.<br />
-                      Poligono La Moraga, nave 21B<br />
-                      29130 Alhaurín de la Torre<br />
-                      España
-                    </address>
-                  </div>
-                </div>
+              <div className="glass-morphism rounded-xl p-8 mb-10 bg-alice">
+                <p className="text-xl text-secondary/80 mb-6">
+                  <strong>More capacity, faster lead‑times:</strong> purpose‑built lines for capsules, powders, tablets, blisters and pouches.
+                </p>
+                
+                <p className="text-xl text-secondary/80">
+                  <strong>Tougher quality & greener footprint:</strong> IFS Food, GMP ready from day one, with solar, energy‑recovery HVAC and smart logistics.
+                </p>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-      
-      {/* What Rebuild Means Section */}
-      <section className="py-16 bg-white">
-        <div className="container">
-          <motion.div 
-            className="max-w-4xl mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-10">
-              What the rebuild means for you
-            </h2>
-            
-            <div className="glass-morphism rounded-xl p-8 mb-10 bg-alice">
-              <p className="text-xl text-secondary/80 mb-6">
-                <strong>More capacity, faster lead‑times:</strong> purpose‑built lines for capsules, powders, tablets, blisters and pouches.
-              </p>
               
-              <p className="text-xl text-secondary/80">
-                <strong>Tougher quality & greener footprint:</strong> IFS Food, GMP ready from day one, with solar, energy‑recovery HVAC and smart logistics.
-              </p>
-            </div>
-            
-            <Button className="group">
-              Follow Our Rebuild Updates
-              <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
+              <Button className="group">
+                Follow Our Rebuild Updates
+                <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
+              </Button>
+            </motion.div>
+          </div>
+        </section>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 };
 
