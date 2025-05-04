@@ -16,12 +16,21 @@ jobs:
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: true
+      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: 'mondial-pack-blueprint/package-lock.json'
+      
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: mondial-pack-blueprint/node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('mondial-pack-blueprint/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
       
       - name: Install dependencies
         working-directory: mondial-pack-blueprint
