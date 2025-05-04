@@ -32,9 +32,8 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "apps/web"
-          output_location: "dist"
+          output_location: "apps/web/dist"
           app_build_command: "pnpm --filter web build"
-          environment_name: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
           skip_app_build: true
 
   production_deploy:
