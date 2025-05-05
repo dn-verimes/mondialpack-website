@@ -33,7 +33,7 @@ const Header: React.FC = () => {
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <span className={cn("font-medium text-xl transition-colors duration-300", logoTextColor)}>
+          <span className={cn("font-general-sans-medium text-xl transition-colors duration-300", logoTextColor)}>
             Mondial Pack
           </span>
         </Link>
@@ -57,11 +57,11 @@ const Header: React.FC = () => {
           isScrolled ? "bg-white/10 md:bg-transparent" : "bg-white/5 md:bg-transparent"
         )}>
           <ul className="flex flex-col md:flex-row h-full md:h-auto items-center justify-center md:justify-start space-y-8 md:space-y-0 md:space-x-8 p-4 md:p-0">
-            <li><Link to="/" className={cn("text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-            <li><Link to="/about" className={cn("text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>About</Link></li>
-            <li><Link to="/capabilities" className={cn("text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Capabilities</Link></li>
-            <li><Link to="/resources" className={cn("text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Resources</Link></li>
-            <li><Link to="/contact" className={cn("text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+            <li><Link to="/" className={cn("font-general-sans-medium text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+            <li><Link to="/about" className={cn("font-general-sans-medium text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>About</Link></li>
+            <li><Link to="/capabilities" className={cn("font-general-sans-medium text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Capabilities</Link></li>
+            <li><Link to="/resources" className={cn("font-general-sans-medium text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Resources</Link></li>
+            <li><Link to="/contact" className={cn("font-general-sans-medium text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
           </ul>
         </nav>
 
