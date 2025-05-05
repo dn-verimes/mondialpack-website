@@ -6,10 +6,17 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
-import { PenTool, Tablet, Pill, Droplet, Candy, Wine, Package, ScrollText, Box, Archive, ArrowRight, Download, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import Button from '@/components/Button';
+import { useCapabilities } from '@/hooks/useCapabilities';
+import { SanityCapability } from '@/types/sanity';
+import { urlFor } from '@/lib/sanity';
+import { client, CAPABILITIES_QUERY } from '../lib/sanity'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { AlertCircle } from 'lucide-react';
+import FormatCards from '@/components/FormatCards';
 
 // Animation variants
 const containerVariants = {
@@ -34,177 +41,6 @@ const itemVariants = {
   }
 };
 
-// Format specifications data
-const formatSpecs = {
-  capsules: {
-    title: "Capsules",
-    image: "/assets/capsules-macro.jpg", // Placeholder for now
-    specs: [
-      "Size range: 000–4",
-      "Shells: Gelatin, HPMC (vegan)",
-      "Fill weight: 100 mg – 1,000 mg",
-      "Colour/print: up to 2 PMS inks",
-      "MOQ: 250 k units",
-      "Lead time: 4–6 weeks"
-    ],
-    icon: <PenTool size={24} className="text-primary" />
-  },
-  tablets: {
-    title: "Tablets",
-    image: "/assets/tablets-macro.jpg", // Placeholder for now
-    specs: [
-      "Shape: Round, oval, custom",
-      "Size: 5-16mm diameter",
-      "Weight: 80mg - 1,500mg",
-      "Coating: Film, sugar, enteric",
-      "MOQ: 300 k units",
-      "Lead time: 5–7 weeks"
-    ],
-    icon: <Tablet size={24} className="text-primary" />
-  },
-  softgels: {
-    title: "Softgels",
-    image: "/assets/softgels-macro.jpg", // Placeholder for now
-    specs: [
-      "Sizes: 2-22 minims",
-      "Fill type: Oil, suspension",
-      "Shell: Gelatin, plant-based",
-      "Shape: Oval, round, oblong",
-      "MOQ: 500 k units",
-      "Lead time: 6–8 weeks"
-    ],
-    icon: <Pill size={24} className="text-primary" />
-  },
-  powders: {
-    title: "Powders",
-    image: "/assets/powders-macro.jpg", // Placeholder for now
-    specs: [
-      "Types: Direct compressible, granulated",
-      "Particle size: 50-300 microns",
-      "Flow properties: Excellent",
-      "Fill weight accuracy: ±3%",
-      "MOQ: 1,000 kg",
-      "Lead time: 3–5 weeks"
-    ],
-    icon: <Droplet size={24} className="text-primary" />
-  },
-  gummies: {
-    title: "Gummies",
-    image: "/assets/gummies-macro.jpg", // Placeholder for now
-    specs: [
-      "Base: Pectin, gelatin",
-      "Weight: 2.5-5g per unit",
-      "Shapes: Custom molds available",
-      "Flavors: 20+ options",
-      "MOQ: 200 k units",
-      "Lead time: 6–8 weeks"
-    ],
-    icon: <Candy size={24} className="text-primary" />
-  }
-};
-
-// Packaging data
-const packagingData = [
-  {
-    title: "Bottles",
-    description: "High-quality PET and HDPE bottles with various closure options",
-    icon: <Wine size={24} className="text-primary" />,
-    details: [
-      "Volumes: 60 ml – 1 L",
-      "Closures: CT, CRC, induction seal",
-      "Label area dimensions available",
-      "Suggested pack counts: 30, 60, 90, 180"
-    ]
-  },
-  {
-    title: "Blisters",
-    description: "PVC/PVDC and Alu-Alu blister packaging for solid dosage forms",
-    icon: <Package size={24} className="text-primary" />,
-    details: [
-      "Pocket pitches, cavity depths customizable",
-      "Max tablet Ø 16 mm",
-      "Options: cold-form, push-through foils",
-      "Custom perforation patterns available"
-    ]
-  },
-  {
-    title: "Sachets",
-    description: "Single-dose sachets for powders and granules",
-    icon: <ScrollText size={24} className="text-primary" />,
-    details: [
-      "Weights: 1–30 g",
-      "Material: PET/Alu/PE",
-      "Print: up to 6 color flexo",
-      "Tear notch options"
-    ]
-  },
-  {
-    title: "Stick-packs",
-    description: "Convenient single-dose packaging for powders",
-    icon: <Box size={24} className="text-primary" />,
-    details: [
-      "Dimensions: 8-15mm width",
-      "Length: 50-180mm",
-      "Fill weight: 0.5-10g",
-      "Heat-seal or cold-seal options"
-    ]
-  },
-  {
-    title: "Display boxes",
-    description: "Retail-ready counter displays and packaging",
-    icon: <Archive size={24} className="text-primary" />,
-    details: [
-      "Custom die-lines available",
-      "4-color offset printing",
-      "Matte or gloss lamination",
-      "Shelf or counter configurations"
-    ]
-  }
-];
-
-// HeroSection Component
-const HeroSection = () => {
-  return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Video background */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <div className="absolute inset-0 bg-primary/70 z-10"></div>
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="/assets/blister-line.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      
-      {/* Hero content */}
-      <div className="container relative z-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#FBFBFC] mb-6">
-            Precision in Every Format & Pack
-          </h1>
-          <p className="text-xl text-[#FBFBFC]/90 mb-8 max-w-2xl mx-auto">
-            From formulation to finished product, discover our comprehensive manufacturing capabilities.
-          </p>
-          <Button size="lg" className="group">
-            Explore Our Capabilities
-            <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
-          </Button>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
-
 // StickyNav Component
 const StickyNav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -220,7 +56,7 @@ const StickyNav = () => {
   return (
     <div 
       className={cn(
-        "w-full py-3 bg-[#FBFBFC] transition-all duration-300 z-40",
+        "w-full py-3 bg-white transition-all duration-300 z-40",
         isScrolled ? "sticky top-0 shadow-md" : ""
       )}
     >
@@ -236,226 +72,83 @@ const StickyNav = () => {
   );
 };
 
-// FormatSection Component
-const FormatSection = () => {
-  const [isImagesLoaded, setIsImagesLoaded] = useState(false);
-  const [activeTab, setActiveTab] = useState("capsules");
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsImagesLoaded(true);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  
+// CapabilityItem Component
+const CapabilityItem = ({ capability }: { capability: SanityCapability }) => {
   return (
-    <section id="formats" className="py-20 bg-gradient-to-b from-[#FBFBFC] to-[#EFF6FF]" ref={containerRef}>
+    <motion.div
+      variants={itemVariants}
+      className="bg-white rounded-lg shadow-md overflow-hidden p-6 hover:shadow-lg transition-shadow"
+    >
+      <div className="flex flex-col items-center text-center">
+        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+          <span className="text-3xl text-primary">{capability.icon}</span>
+        </div>
+        <h3 className="text-xl font-medium mb-2">{capability.title}</h3>
+        <p className="text-secondary/80 text-sm">{capability.description}</p>
+      </div>
+    </motion.div>
+  );
+};
+
+// CapabilitiesGrid Component
+const CapabilitiesGrid = () => {
+  const { data: capabilities, isLoading } = useCapabilities();
+  
+  if (isLoading) {
+    return (
+      <div className="container py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[...Array(6)].map((_, i) => (
+            <Skeleton key={i} className="h-48 w-full" />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <section className="py-20 bg-white">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true, margin: "-10%" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">Product Formats</h2>
-          <p className="text-lg text-secondary/80 max-w-3xl mx-auto">
-            Explore our diverse range of dosage forms designed to meet your specific requirements
-          </p>
+          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-6">
+            Our Manufacturing Capabilities
+          </h2>
+          <div className="w-24 h-1 bg-primary mx-auto"></div>
         </motion.div>
-
-        <Tabs defaultValue="capsules" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 gap-4 mb-8">
-            {Object.entries(formatSpecs).map(([key, format]) => (
-              <TabsTrigger 
-                key={key} 
-                value={key}
-                className="flex items-center gap-2"
-              >
-                {format.icon}
-                {format.title}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
-          {Object.entries(formatSpecs).map(([key, format]) => (
-            <TabsContent key={key} value={key}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="grid md:grid-cols-2 gap-8"
-              >
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
-                  {!isImagesLoaded ? (
-                    <Skeleton className="w-full h-full" />
-                  ) : (
-                    <motion.div style={{ y }} className="w-full h-full">
-                      <img
-                        src={format.image}
-                        alt={format.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </motion.div>
-                  )}
-                </div>
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-medium text-secondary">{format.title} Specifications</h3>
-                  <ul className="space-y-3">
-                    {format.specs.map((spec, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <span className="text-primary mt-1">•</span>
-                        <span className="text-secondary/80">{spec}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button className="group">
-                    Download Technical Sheet
-                    <Download className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
-                  </Button>
-                </div>
-              </motion.div>
-            </TabsContent>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {capabilities?.map((capability) => (
+            <CapabilityItem key={capability._id} capability={capability} />
           ))}
-        </Tabs>
+        </motion.div>
       </div>
     </section>
   );
 };
 
-// PackagingItem Component
-const PackagingItem = ({ item, index }: { item: any, index: number }) => {
-  return (
-    <Drawer>
-      <DrawerTrigger asChild>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          viewport={{ once: true, margin: "-5%" }}
-          className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
-        >
-          <div className="flex items-start gap-4">
-            <div className="p-3 rounded-lg bg-primary/10">
-              {item.icon}
-            </div>
-            <div>
-              <h3 className="text-xl font-medium text-secondary mb-2">{item.title}</h3>
-              <p className="text-secondary/70">{item.description}</p>
-            </div>
-          </div>
-        </motion.div>
-      </DrawerTrigger>
-      <DrawerContent>
-        <div className="p-6">
-          <h3 className="text-2xl font-medium text-secondary mb-4">{item.title}</h3>
-          <p className="text-secondary/80 mb-6">{item.description}</p>
-          <ul className="space-y-3 mb-6">
-            {item.details.map((detail: string, i: number) => (
-              <li key={i} className="flex items-start gap-3">
-                <span className="text-primary mt-1">•</span>
-                <span className="text-secondary/80">{detail}</span>
-              </li>
-            ))}
-          </ul>
-          <Button className="group">
-            Download Technical Sheet
-            <Download className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
-          </Button>
-        </div>
-      </DrawerContent>
-    </Drawer>
-  );
-};
-
-// PackagingSection Component
-const PackagingSection = () => {
-  return (
-    <section id="packaging" className="py-20 bg-white">
-      <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true, margin: "-10%" }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">Packaging Solutions</h2>
-          <p className="text-lg text-secondary/80 max-w-3xl mx-auto">
-            Protect and present your products with our diverse range of packaging options
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {packagingData.map((item, index) => (
-            <PackagingItem key={index} item={item} index={index} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Main Capabilities Page Component
 const Capabilities = () => {
-  const [activeTab, setActiveTab] = useState("formats");
-  const [isScrolled, setIsScrolled] = useState(false);
-  const stickyNavRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (stickyNavRef.current) {
-        const { top } = stickyNavRef.current.getBoundingClientRect();
-        setIsScrolled(top <= 0);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <>
       <Header />
       <main>
-        <PageHero 
+        <PageHero
           title="Our Capabilities"
-          subtitle="Comprehensive supplement manufacturing solutions for your brand"
-          showButtons={false}
+          subtitle="From formulation to finished product, discover our comprehensive manufacturing capabilities."
         />
-        
-        {/* Sticky Navigation */}
-        <div 
-          ref={stickyNavRef}
-          className={cn(
-            "sticky top-0 z-50 bg-white shadow-sm transition-all duration-200",
-            isScrolled ? "py-4" : "py-6"
-          )}
-        >
-          <div className="container">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="formats">Formats</TabsTrigger>
-                <TabsTrigger value="packaging">Packaging</TabsTrigger>
-              </TabsList>
-              
-              {/* Content Sections */}
-              <TabsContent value="formats" className="mt-0">
-                <FormatSection />
-              </TabsContent>
-              <TabsContent value="packaging">
-                <PackagingSection />
-              </TabsContent>
-            </Tabs>
-          </div>
-        </div>
+        <StickyNav />
+        <CapabilitiesGrid />
+        <FormatCards />
       </main>
       <Footer />
     </>

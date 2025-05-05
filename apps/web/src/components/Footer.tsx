@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram, Twitter } from 'lucide-react';
@@ -10,7 +9,11 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-medium mb-4">Mondial Pack</h3>
+            <img 
+              src="/assets/mondial-pack-logo-white-rgb.svg" 
+              alt="Mondial Pack" 
+              className="h-10 w-auto mb-4"
+            />
             <p className="text-white/80 mb-6">
               Your trusted partner for premium supplement manufacturing, packaging, and delivery.
             </p>
@@ -32,113 +35,62 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-medium mb-4">Quick Links</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/about" className="text-white/80 hover:text-primary transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/capabilities" className="text-white/80 hover:text-primary transition-colors">
-                  Capabilities
-                </Link>
-              </li>
-              <li>
-                <Link to="/formats" className="text-white/80 hover:text-primary transition-colors">
-                  Formats
-                </Link>
-              </li>
-              <li>
-                <Link to="/packaging" className="text-white/80 hover:text-primary transition-colors">
-                  Packaging
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="text-white/80 hover:text-primary transition-colors">
-                  Services
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="text-lg font-medium mb-4">Resources</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/resources/blog" className="text-white/80 hover:text-primary transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link to="/resources/case-studies" className="text-white/80 hover:text-primary transition-colors">
-                  Case Studies
-                </Link>
-              </li>
-              <li>
-                <Link to="/resources/white-papers" className="text-white/80 hover:text-primary transition-colors">
-                  White Papers
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="text-white/80 hover:text-primary transition-colors">
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-white/80 hover:text-primary transition-colors">
-                  Contact Us
-                </Link>
-              </li>
+            <h3 className="text-xl font-medium mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><Link to="/about" className="text-white/80 hover:text-primary transition-colors">About Us</Link></li>
+              <li><Link to="/capabilities" className="text-white/80 hover:text-primary transition-colors">Capabilities</Link></li>
+              <li><Link to="/resources" className="text-white/80 hover:text-primary transition-colors">Resources</Link></li>
+              <li><Link to="/contact" className="text-white/80 hover:text-primary transition-colors">Contact</Link></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-medium mb-4">Contact Us</h3>
+            <h3 className="text-xl font-medium mb-4">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <MapPin size={20} className="mr-2 mt-1 text-primary flex-shrink-0" />
-                <span className="text-white/80">
-                  123 Manufacturing Way<br />
-                  Industrial Park, Suite 100<br />
-                  Production City, PC 12345
-                </span>
+                <Mail className="text-primary mr-3 mt-1" size={20} />
+                <span className="text-white/80">info@mondialpack.com</span>
               </li>
-              <li className="flex items-center">
-                <Phone size={20} className="mr-2 text-primary flex-shrink-0" />
-                <a href="tel:+15551234567" className="text-white/80 hover:text-primary transition-colors">
-                  +1 (555) 123-4567
-                </a>
+              <li className="flex items-start">
+                <Phone className="text-primary mr-3 mt-1" size={20} />
+                <span className="text-white/80">+31 (0)53 431 00 00</span>
               </li>
-              <li className="flex items-center">
-                <Mail size={20} className="mr-2 text-primary flex-shrink-0" />
-                <a href="mailto:info@mondialpack.com" className="text-white/80 hover:text-primary transition-colors">
-                  info@mondialpack.com
-                </a>
+              <li className="flex items-start">
+                <MapPin className="text-primary mr-3 mt-1" size={20} />
+                <address className="not-italic text-white/80">
+                  Rigtersbleek-Aalten 18<br />
+                  7521 RB Enschede<br />
+                  The Netherlands
+                </address>
               </li>
             </ul>
           </div>
+
+          {/* Newsletter */}
+          <div>
+            <h3 className="text-xl font-medium mb-4">Stay Updated</h3>
+            <p className="text-white/80 mb-4">
+              Subscribe to our newsletter for the latest updates and industry insights.
+            </p>
+            <form className="flex flex-col space-y-4">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-primary"
+              />
+              <button
+                type="submit"
+                className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
 
-        <hr className="border-white/20 my-8" />
-
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-white/60 text-sm">
-            &copy; {new Date().getFullYear()} Mondial Pack. All rights reserved.
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link to="/privacy-policy" className="text-white/60 hover:text-primary text-sm transition-colors">
-              Privacy Policy
-            </Link>
-            <Link to="/terms-of-service" className="text-white/60 hover:text-primary text-sm transition-colors">
-              Terms of Service
-            </Link>
-            <Link to="/sitemap" className="text-white/60 hover:text-primary text-sm transition-colors">
-              Sitemap
-            </Link>
-          </div>
+        <div className="border-t border-white/20 mt-12 pt-8 text-center text-white/60">
+          <p>&copy; {new Date().getFullYear()} Mondial Pack. All rights reserved.</p>
         </div>
       </div>
     </footer>

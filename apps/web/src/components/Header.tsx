@@ -26,16 +26,18 @@ const Header: React.FC = () => {
   return (
     <header
       className={cn(
-        "fixed w-full top-0 left-0 z-50 transition-all duration-300 py-4",
-        isScrolled ? "glass-morphism shadow-sm" : "bg-transparent"
+        "fixed w-full top-0 left-0 z-50 py-6",
+        isMenuOpen ? "bg-transparent" : (isScrolled ? "glass-morphism shadow-sm" : "bg-transparent")
       )}
     >
-      <div className="container flex items-center justify-between">
+      <div className="container flex items-center justify-between px-6">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <span className={cn("font-general-sans-medium text-xl transition-colors duration-300", logoTextColor)}>
-            Mondial Pack
-          </span>
+          <img 
+            src={isScrolled ? "/assets/mondial-pack-logo-full-colour-rgb.svg" : "/assets/mondial-pack-logo-white-rgb.svg"} 
+            alt="Mondial Pack" 
+            className="h-10 w-auto"
+          />
         </Link>
 
         {/* Mobile menu toggle */}
@@ -51,17 +53,17 @@ const Header: React.FC = () => {
         {/* Navigation */}
         <nav className={cn(
           // Mobile styles
-          "fixed md:relative inset-0 md:inset-auto top-0 left-0 w-full h-screen md:h-auto md:w-auto transition-all duration-300 md:duration-0 ease-in-out",
+          "fixed md:relative inset-0 md:inset-auto top-0 left-0 w-full h-screen md:h-auto md:w-auto transition-all duration-200 ease-in-out",
           "backdrop-blur-md md:backdrop-blur-none",
           isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible md:opacity-100 md:visible",
-          isScrolled ? "bg-white/10 md:bg-transparent" : "bg-white/5 md:bg-transparent"
+          "bg-white/5 md:bg-transparent"
         )}>
           <ul className="flex flex-col md:flex-row h-full md:h-auto items-center justify-center md:justify-start space-y-8 md:space-y-0 md:space-x-8 p-4 md:p-0">
-            <li><Link to="/" className={cn("font-general-sans-medium text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-            <li><Link to="/about" className={cn("font-general-sans-medium text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>About</Link></li>
-            <li><Link to="/capabilities" className={cn("font-general-sans-medium text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Capabilities</Link></li>
-            <li><Link to="/resources" className={cn("font-general-sans-medium text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Resources</Link></li>
-            <li><Link to="/contact" className={cn("font-general-sans-medium text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+            <li><Link to="/" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+            <li><Link to="/about" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>About</Link></li>
+            <li><Link to="/capabilities" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Capabilities</Link></li>
+            <li><Link to="/resources" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Resources</Link></li>
+            <li><Link to="/contact" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
           </ul>
         </nav>
 

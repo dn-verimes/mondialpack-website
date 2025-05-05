@@ -14,7 +14,6 @@ const Hero: React.FC = () => {
           muted
           loop
           playsInline
-          poster="/assets/placeholder.jpg"
         >
           <source src="/assets/Business Video Mondial Pack.mp4" type="video/mp4" />
           {/* Fallback for browsers that don't support video */}

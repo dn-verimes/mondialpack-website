@@ -1,23 +1,8 @@
-import { useEffect } from "react";
 import PageHero from '@/components/PageHero';
 import { motion } from 'framer-motion';
+import ContactForm from '@/components/ContactForm';
 
 const Contact = () => {
-  useEffect(() => {
-    // Load Typeform embed script
-    const script = document.createElement("script");
-    script.src = "//embed.typeform.com/next/embed.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Update document title
-    document.title = "Contact Us - MondialPack";
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <main>
       <PageHero
@@ -48,10 +33,7 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-4xl mx-auto"
           >
-            <div
-              data-tf-live="01HXZQZQZQZQZQZQZQZQZQZQZ"
-              className="w-full h-[600px]"
-            ></div>
+            <ContactForm />
           </motion.div>
         </div>
       </section>

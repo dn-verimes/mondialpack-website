@@ -1,0 +1,12 @@
+{
+  "origins": [
+    {
+      "origin": "http://localhost:8082",
+      "allowCredentials": true
+    },
+    {
+      "origin": "http://192.168.178.225:8082",
+      "allowCredentials": true
+    }
+  ]
+} 

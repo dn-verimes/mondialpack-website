@@ -1,0 +1,13 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "mondial-pack-website": {
+      "appLocation": "apps/web",
+      "outputLocation": "dist",
+      "appBuildCommand": "pnpm --filter web build",
+      "run": "pnpm --filter web dev",
+      "appDevserverUrl": "http://localhost:8080",
+      "installCommand": "pnpm install"
+    }
+  }
+}

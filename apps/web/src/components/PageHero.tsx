@@ -28,7 +28,6 @@ const PageHero: React.FC<PageHeroProps> = ({
           muted
           loop
           playsInline
-          poster="/assets/placeholder.jpg"
         >
           <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.

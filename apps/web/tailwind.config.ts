@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -69,6 +68,10 @@ export default {
       },
       fontFamily: {
         sans: ['"General Sans"', "Arial", "Helvetica", "sans-serif"],
+      },
+      fontWeight: {
+        'general-sans-medium': '500',
+        'general-sans-semibold': '600',
       },
       boxShadow: {
         soft: "0 4px 20px 0 rgba(0, 0, 0, 0.05)",

@@ -1,15 +1,12 @@
-
 import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import KpiCounter from '@/components/KpiCounter';
-import ProcessSteps from '@/components/ProcessSteps';
-import FormatCards from '@/components/FormatCards';
-import AboutSection from '@/components/AboutSection';
-import TrustBadges from '@/components/TrustBadges';
 import CTABanner from '@/components/CTABanner';
 import Footer from '@/components/Footer';
-import ProductCategories from '@/components/ProductCategories';
+import CapabilitiesGrid from '@/components/CapabilitiesGrid';
+import ProductInspirationCarousel from '@/components/ProductInspirationCarousel';
+import ProductionFacilities from '@/components/ProductionFacilities';
 import { setupAnimations } from '@/utils/animations';
 
 const Index: React.FC = () => {
@@ -22,11 +19,9 @@ const Index: React.FC = () => {
       <Header />
       <main>
         <Hero />
-        <ProductCategories />
-        <ProcessSteps />
-        <AboutSection />
-        <FormatCards />
-        <TrustBadges />
+        <CapabilitiesGrid />
+        <ProductInspirationCarousel />
+        <ProductionFacilities />
         <CTABanner />
       </main>
       <Footer />
