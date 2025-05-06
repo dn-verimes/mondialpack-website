@@ -11,7 +11,7 @@ import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
 import Header from "./components/Header";
-import { useI18nSync } from './lib/i18n';
+import { useI18nSync } from '@/lib/i18n';
 
 const queryClient = new QueryClient();
 
