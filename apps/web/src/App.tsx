@@ -11,29 +11,37 @@ import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
 import Header from "./components/Header";
+import { useI18nSync } from './lib/i18n';
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/capabilities" element={<Capabilities />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/contact" element={<Contact />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  // Sync i18n with our language context
+  useI18nSync();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/capabilities" element={<Capabilities />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/contact" element={<Contact />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
+
+// Last deployment: 2024-03-21
