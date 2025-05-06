@@ -13,5 +13,13 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    dedupe: ['react', 'react-dom', 'i18next', 'react-i18next'],
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+  },
+  optimizeDeps: {
+    include: ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
+  },
+  json: {
+    stringify: true,
   },
 });
