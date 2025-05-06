@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { client } from '../lib/sanity'
 import { groq } from 'next-sanity'
+import { useTranslation } from 'react-i18next'
 
 interface Capability {
   _id: string
@@ -13,6 +14,7 @@ interface Capability {
 export default function Capabilities() {
   const [capabilities, setCapabilities] = useState<Capability[]>([])
   const [loading, setLoading] = useState(true)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const fetchCapabilities = async () => {
@@ -31,13 +33,14 @@ export default function Capabilities() {
   }, [])
 
   if (loading) {
-    return <div>Loading capabilities...</div>
+    return <div>{t('common.loading')}</div>
   }
 
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Capabilities</h2>
+        <h2 className="text-3xl font-bold text-center mb-4">{t('home.capabilities.title')}</h2>
+        <p className="text-center text-gray-600 mb-12">{t('home.capabilities.subtitle')}</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((capability) => (
             <div

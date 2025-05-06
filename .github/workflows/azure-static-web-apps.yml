@@ -28,8 +28,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
-      - name: Build
-        run: pnpm --filter web build
+      - name: Build Web App
+        run: pnpm --filter @mondial-pack/web build
       - name: Deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -37,8 +37,9 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "apps/web/dist"
-          app_build_command: "pnpm --filter web build"
+          app_build_command: "pnpm --filter @mondial-pack/web build"
           skip_app_build: true
+          output_location: "dist"
 
   production_deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -47,8 +48,6 @@ jobs:
     name: Production Deploy
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: true
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -56,7 +55,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build Web App
-        run: pnpm --filter web build
+        run: pnpm --filter @mondial-pack/web build
       - name: Deploy to Production
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -64,8 +63,9 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "apps/web/dist"
-          app_build_command: "pnpm --filter web build"
+          app_build_command: "pnpm --filter @mondial-pack/web build"
           skip_app_build: true
+          output_location: "dist"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

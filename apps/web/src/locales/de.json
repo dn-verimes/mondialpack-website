@@ -1,0 +1,179 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "capabilities": "Fähigkeiten",
+    "resources": "Ressourcen",
+    "contact": "Kontakt",
+    "login": "Anmelden"
+  },
+  "common": {
+    "readMore": "Weiterlesen",
+    "learnMore": "Mehr erfahren",
+    "viewAll": "Alle anzeigen",
+    "loading": "Laden..."
+  },
+  "errors": {
+    "general": "Ein Fehler ist aufgetreten",
+    "notFound": "Seite nicht gefunden",
+    "tryAgain": "Bitte versuchen Sie es erneut"
+  },
+  "footer": {
+    "companyDescription": "Ihr vertrauenswürdiger Partner für Premium-Nahrungsergänzungsmittel, Verpackung und Lieferung.",
+    "quickLinks": "Schnelllinks",
+    "contactUs": "Kontaktieren Sie uns",
+    "stayUpdated": "Bleiben Sie informiert",
+    "newsletterDescription": "Abonnieren Sie unseren Newsletter für die neuesten Updates und Brancheneinblicke.",
+    "emailPlaceholder": "Ihre E-Mail-Adresse",
+    "subscribe": "Abonnieren",
+    "copyright": "Alle Rechte vorbehalten."
+  },
+  "home": {
+    "hero": {
+      "title": "Von der Idee zum fertigen Nahrungsergänzungsmittel",
+      "subtitle": "Ihr vertrauenswürdiger Partner für Premium-Nahrungsergänzungsmittel, Verpackung und Lieferung mit unübertroffener Qualität.",
+      "cta": {
+        "primary": "Angebot anfordern",
+        "secondary": "Mehr erfahren"
+      }
+    },
+    "about": {
+      "title": "Qualitätsfertigung für Premium-Nahrungsergänzungsmittel",
+      "description": "Mit über zwei Jahrzehnten Erfahrung hat sich Mondial Pack als führendes Unternehmen in der Herstellung von Nahrungsergänzungsmitteln etabliert. Unsere modernsten Einrichtungen und unser Expertenteam stellen sicher, dass Ihre Produkte die höchsten Qualitäts- und Wirksamkeitsstandards erfüllen.",
+      "subDescription": "Wir legen Wert auf unsere Aufmerksamkeit für Details, unser Engagement für Nachhaltigkeit und unseren innovativen Ansatz bei der Herstellung von Nahrungsergänzungsmitteln.",
+      "cta": "Über unser Unternehmen"
+    },
+    "process": {
+      "title": "Unser Fünf-Stufen-Prozess",
+      "subtitle": "Wir haben unseren Herstellungsprozess für Nahrungsergänzungsmittel perfektioniert, um Qualität in jeder Phase zu gewährleisten.",
+      "steps": {
+        "sourcing": {
+          "title": "Beschaffung",
+          "description": "Sorgfältige Auswahl hochwertiger Rohstoffe"
+        },
+        "qualityControl": {
+          "title": "Qualitätskontrolle",
+          "description": "Rigorose Prüfung aller Rohstoffe"
+        },
+        "production": {
+          "title": "Produktion",
+          "description": "Herstellung in modernsten Einrichtungen"
+        },
+        "packaging": {
+          "title": "Verpackung",
+          "description": "Maßgeschneiderte Lösungen für Ihre Marke"
+        },
+        "logistics": {
+          "title": "Logistik",
+          "description": "Zuverlässiger Versand und globale Distribution"
+        }
+      }
+    },
+    "capabilities": {
+      "title": "Unsere Fähigkeiten",
+      "subtitle": "Von der Formulierung bis zum fertigen Produkt bieten wir umfassende Lösungen in verschiedenen Formaten und Verpackungsoptionen.",
+      "categories": {
+        "capsules": {
+          "title": "Kapseln",
+          "description": "Hartkapseln in verschiedenen Größen und Materialien, einschließlich vegetarischer Optionen. Individuelle Druck- und Füllmöglichkeiten."
+        },
+        "tablets": {
+          "title": "Tabletten",
+          "description": "Komprimierte Tabletten mit präziser Dosierung, verschiedenen Formen und Überzügen. Spezialisiert auf sofortige und kontrollierte Freisetzung."
+        },
+        "powders": {
+          "title": "Pulver",
+          "description": "Hochwertige Pulvermischungen mit hervorragenden Fließeigenschaften. Individuelle Partikelgrößenverteilung und Mischmöglichkeiten."
+        },
+        "gummies": {
+          "title": "Gummis & Weiche Kautabletten",
+          "description": "Leckere Gummis und weiche Kautabletten mit präziser Dosierung. Individuelle Formen, Geschmacksrichtungen und Texturen verfügbar."
+        },
+        "liquids": {
+          "title": "Flüssigkeiten & Sprays",
+          "description": "Flüssige Formulierungen und Sprühlösungen mit präziser Dosierung. Spezialisiert auf wasser- und ölbasierte Produkte."
+        },
+        "sachets": {
+          "title": "Beutel & Sticks",
+          "description": "Einzeldosis-Beutel und Sticks für Pulver und Granulate. Individuelle Größen und Materialien verfügbar."
+        }
+      }
+    },
+    "aboutMondialPack": {
+      "title": "Über Mondial Pack",
+      "subtitle": "Mit über 20 Jahren Erfahrung haben wir uns als führendes Unternehmen in der Herstellung von Nahrungsergänzungsmitteln etabliert und verbinden modernste Technologie mit pharmazeutischen Qualitätsstandards.",
+      "pillars": {
+        "experience": {
+          "title": "Erfahrung",
+          "description": "Über zwei Jahrzehnte Expertise in der Herstellung von Nahrungsergänzungsmitteln"
+        },
+        "quality": {
+          "title": "Qualität",
+          "description": "Rigorose Qualitätskontrolle und Tests in jeder Produktionsphase"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Modernste Einrichtungen und kontinuierliche Prozessverbesserung"
+        },
+        "partnership": {
+          "title": "Partnerschaft",
+          "description": "Kollaborativer Ansatz zur Erfüllung Ihrer individuellen Produktanforderungen"
+        }
+      },
+      "cta": "Mehr über uns erfahren"
+    },
+    "processFlow": {
+      "title": "Unsere Wertschöpfungskette",
+      "subtitle": "Von Rohstoffen bis zu fertigen Produkten betreuen wir jeden Schritt des Prozesses mit Expertise und Sorgfalt.",
+      "steps": {
+        "sourcing": {
+          "title": "Beschaffung",
+          "description": "Strategische Beschaffung hochwertiger Rohstoffe und Zutaten von vertrauenswürdigen Lieferanten weltweit."
+        },
+        "mixing": {
+          "title": "Mischen",
+          "description": "Präzise Formulierung und Mischung von Zutaten mit modernster Mischtechnologie."
+        },
+        "production": {
+          "title": "Produktion",
+          "description": "Fortschrittliche Fertigungsprozesse für gleichbleibende Qualität und optimale Effizienz."
+        },
+        "packaging": {
+          "title": "Verpackung",
+          "description": "Maßgeschneiderte Verpackungslösungen, die Ihre Produkte schützen und die Markenpräsentation verbessern."
+        },
+        "delivery": {
+          "title": "Lieferung",
+          "description": "Zuverlässige Logistik- und Distributionsdienste für eine effiziente Markteinführung Ihrer Produkte."
+        }
+      }
+    },
+    "facilities": {
+      "title": "Unsere Produktionsstätten",
+      "netherlands": {
+        "title": "Niederländische Zentrale",
+        "description": "Unsere Hauptproduktionsstätte in Enschede, ausgestattet mit modernsten Fertigungskapazitäten.",
+        "address": {
+          "company": "Mondial Pack B.V.",
+          "street": "Rigtersbleek-Aalten 18",
+          "postal": "7521 RB Enschede",
+          "country": "Niederlande"
+        }
+      },
+      "spain": {
+        "title": "Spanische Produktionsstätte",
+        "description": "Unsere spezialisierte Einrichtung in Alhaurín de la Torre, fokussiert auf Hochvolumenproduktion und Distribution.",
+        "address": {
+          "company": "Mondial Pack Europe S.L.",
+          "street": "Poligono La Moraga, nave 21B",
+          "postal": "29130 Alhaurín de la Torre",
+          "country": "Spanien"
+        }
+      }
+    },
+    "productInspiration": {
+      "title": "Produkt-Inspiration",
+      "subtitle": "Entdecken Sie unsere vielfältige Palette erfolgreicher Formulierungen und finden Sie Inspiration für Ihr nächstes Produkt"
+    }
+  }
+} 

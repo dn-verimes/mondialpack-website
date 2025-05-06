@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface Product {
   id: number;
@@ -75,6 +76,7 @@ const ProductInspirationCarousel: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % products.length);
@@ -115,9 +117,9 @@ const ProductInspirationCarousel: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">Product Inspiration</h2>
+          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">{t('home.productInspiration.title')}</h2>
           <p className="text-xl text-secondary/80 max-w-3xl mx-auto">
-            Explore our diverse range of successful formulations and find inspiration for your next product
+            {t('home.productInspiration.subtitle')}
           </p>
         </motion.div>
 

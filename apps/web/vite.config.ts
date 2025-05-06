@@ -12,6 +12,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      './lib/i18n': path.resolve(__dirname, './src/lib/i18n.ts'),
     },
     dedupe: ['react', 'react-dom', 'i18next', 'react-i18next'],
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']

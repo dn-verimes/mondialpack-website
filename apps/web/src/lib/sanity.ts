@@ -13,10 +13,9 @@ const config = {
   token: undefined,
   perspective: 'published' as ClientPerspective,
   stega: {
-    enabled: false,
+    enabled: isDevelopment,
     studioUrl: 'https://mondialpack.sanity.studio'
-  },
-  // apiHost is usually inferred from projectId, removing explicit setting
+  }
 }
 
 console.log('Sanity client config:', config)
@@ -36,14 +35,34 @@ export const urlFor = (source: SanityImageSource) => {
   return builder.image(source)
 }
 
-// Query for capabilities
-export const CAPABILITIES_QUERY = `*[_type == "capability"] | order(order asc) {
+// Query for capabilities with language support
+export const CAPABILITIES_QUERY = `*[_type == "capability" && language == $language] | order(order asc) {
   _id,
+  _type,
+  language,
   title,
   description,
   icon,
-  order
+  order,
+  image,
+  specifications,
+  category,
+  "translations": *[_type == "capability" && _id != ^._id && references(^._id)]{
+    _id,
+    language,
+    title,
+    description
+  }
 }`
+
+// Helper function to get content in specific language
+export const getLocalizedContent = async (query: string, language = 'en') => {
+  try {
+    return await client.fetch(query, { language })
+  } catch (error) {
+    handleSanityError(error)
+  }
+}
 
 // Error handling utility
 export const handleSanityError = (error: unknown) => {

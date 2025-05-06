@@ -1,6 +1,7 @@
 export interface SanityCapability {
   _id: string;
   _type: 'capability';
+  language: string;
   title: string;
   slug: {
     _type: 'slug';
@@ -13,10 +14,19 @@ export interface SanityCapability {
       _ref: string;
       _type: 'reference';
     };
+    alt?: string;
   };
   specifications: string[];
   icon: string;
   category: 'format' | 'packaging';
+  order: number;
+  // Reference to translations in other languages
+  translations?: Array<{
+    _id: string;
+    language: string;
+    title: string;
+    description: string;
+  }>;
 }
 
 export interface SanityFormatCapability extends SanityCapability {

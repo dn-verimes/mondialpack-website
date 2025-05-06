@@ -1,32 +1,15 @@
-
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import Button from './Button';
-import { ArrowRight, Building } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 const AboutSection: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          imageRef.current?.classList.add('visible');
-          contentRef.current?.classList.add('visible');
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section ref={sectionRef} className="py-20 bg-white">
@@ -48,16 +31,16 @@ const AboutSection: React.FC = () => {
           
           <div ref={contentRef} className="animate-on-scroll" style={{ transitionDelay: "200ms" }}>
             <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-6">
-              Quality Manufacturing for Premium Supplements
+              {t('home.about.title')}
             </h2>
             <p className="text-lg text-secondary/80 mb-6">
-              With over two decades of experience, Mondial Pack has established itself as a leader in supplement manufacturing. Our state-of-the-art facilities and expert team ensure that your products meet the highest standards of quality and efficacy.
+              {t('home.about.description')}
             </p>
             <p className="text-lg text-secondary/80 mb-8">
-              We pride ourselves on our attention to detail, commitment to sustainability, and innovative approach to supplement production.
+              {t('home.about.subDescription')}
             </p>
             <Button className="group" href="/about">
-              About Our Company
+              {t('home.about.cta')}
               <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
             </Button>
           </div>

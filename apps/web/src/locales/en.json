@@ -1,0 +1,221 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "capabilities": "Capabilities",
+    "resources": "Resources",
+    "contact": "Contact",
+    "login": "Login"
+  },
+  "common": {
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "loading": "Loading..."
+  },
+  "errors": {
+    "general": "An error occurred",
+    "notFound": "Page not found",
+    "tryAgain": "Please try again"
+  },
+  "footer": {
+    "companyDescription": "Your trusted partner for premium supplement manufacturing, packaging, and delivery.",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "stayUpdated": "Stay Updated",
+    "newsletterDescription": "Subscribe to our newsletter for the latest updates and industry insights.",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe",
+    "copyright": "All rights reserved."
+  },
+  "home": {
+    "hero": {
+      "title": "From Idea to Finished Supplement",
+      "subtitle": "Your trusted partner for premium supplement manufacturing, packaging, and delivery with uncompromising quality.",
+      "cta": {
+        "primary": "Request a Quote",
+        "secondary": "Learn More"
+      }
+    },
+    "about": {
+      "title": "Quality Manufacturing for Premium Supplements",
+      "description": "With over two decades of experience, Mondial Pack has established itself as a leader in supplement manufacturing. Our state-of-the-art facilities and expert team ensure that your products meet the highest standards of quality and efficacy.",
+      "subDescription": "We pride ourselves on our attention to detail, commitment to sustainability, and innovative approach to supplement production.",
+      "cta": "About Our Company"
+    },
+    "process": {
+      "title": "Our Five-Step Process",
+      "subtitle": "We've perfected our supplement manufacturing process to ensure quality at every stage.",
+      "steps": {
+        "sourcing": {
+          "title": "Sourcing",
+          "description": "Careful selection of premium quality raw materials"
+        },
+        "qualityControl": {
+          "title": "Quality Control",
+          "description": "Rigorous testing of all raw materials"
+        },
+        "production": {
+          "title": "Production",
+          "description": "Manufacturing in state-of-the-art facilities"
+        },
+        "packaging": {
+          "title": "Packaging",
+          "description": "Custom solutions for your brand"
+        },
+        "logistics": {
+          "title": "Logistics",
+          "description": "Reliable shipping and global distribution"
+        }
+      }
+    },
+    "capabilities": {
+      "title": "Our Capabilities",
+      "subtitle": "From formulation to finished product, we offer comprehensive solutions in various formats and packaging options.",
+      "categories": {
+        "capsules": {
+          "title": "Capsules",
+          "description": "Hard-shell capsules in various sizes and materials, including vegetarian options. Custom printing and filling capabilities."
+        },
+        "tablets": {
+          "title": "Tablets",
+          "description": "Compressed tablets with precise dosing, various shapes and coatings. Specialized in both immediate and controlled release."
+        },
+        "powders": {
+          "title": "Powders",
+          "description": "High-quality powder blends with excellent flow properties. Custom particle size distribution and mixing capabilities."
+        },
+        "gummies": {
+          "title": "Gummies & Soft Chews",
+          "description": "Delicious gummies and soft chews with precise dosing. Custom shapes, flavors, and textures available."
+        },
+        "liquids": {
+          "title": "Liquids & Sprays",
+          "description": "Liquid formulations and spray solutions with precise dosing. Specialized in both water and oil-based products."
+        },
+        "sachets": {
+          "title": "Sachets & Stick Packs",
+          "description": "Single-dose sachets and stick packs for powders and granules. Custom sizes and materials available."
+        }
+      }
+    },
+    "aboutMondialPack": {
+      "title": "About Mondial Pack",
+      "subtitle": "With over 20 years of experience, we've established ourselves as a leader in nutraceutical manufacturing, combining cutting-edge technology with pharmaceutical-grade quality standards.",
+      "pillars": {
+        "experience": {
+          "title": "Experience",
+          "description": "Over two decades of expertise in nutraceutical manufacturing"
+        },
+        "quality": {
+          "title": "Quality",
+          "description": "Rigorous quality control and testing at every stage of production"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "State-of-the-art facilities and continuous process improvement"
+        },
+        "partnership": {
+          "title": "Partnership",
+          "description": "Collaborative approach to meet your unique product requirements"
+        }
+      },
+      "cta": "Learn More About Us"
+    },
+    "processFlow": {
+      "title": "Our Value Chain",
+      "subtitle": "From raw materials to finished products, we handle every step of the process with expertise and care.",
+      "steps": {
+        "sourcing": {
+          "title": "Sourcing",
+          "description": "Strategic procurement of high-quality raw materials and ingredients from trusted suppliers worldwide."
+        },
+        "mixing": {
+          "title": "Mixing",
+          "description": "Precise formulation and blending of ingredients using state-of-the-art mixing technology."
+        },
+        "production": {
+          "title": "Production",
+          "description": "Advanced manufacturing processes ensuring consistent quality and optimal efficiency."
+        },
+        "packaging": {
+          "title": "Packaging",
+          "description": "Custom packaging solutions that protect your products and enhance brand presentation."
+        },
+        "delivery": {
+          "title": "Delivery",
+          "description": "Reliable logistics and distribution services to get your products to market efficiently."
+        }
+      }
+    },
+    "trust": {
+      "title": "Quality & Compliance",
+      "subtitle": "Our facilities and processes meet the highest standards in the industry.",
+      "badges": {
+        "gmp": {
+          "name": "GMP Certified",
+          "description": "Good Manufacturing Practices"
+        },
+        "fda": {
+          "name": "FDA Registered",
+          "description": "Food & Drug Administration"
+        },
+        "iso": {
+          "name": "ISO 9001",
+          "description": "Quality Management"
+        },
+        "organic": {
+          "name": "Organic Certified",
+          "description": "Organic Processing"
+        },
+        "nonGmo": {
+          "name": "Non-GMO",
+          "description": "Non-GMO Project Verified"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Bring Your Supplement Idea to Life?",
+      "subtitle": "Partner with Mondial Pack for end-to-end supplement manufacturing and packaging solutions.",
+      "primary": "Request a Quote",
+      "secondary": "Contact Our Team"
+    },
+    "kpi": {
+      "title": "Our Impact in Numbers",
+      "subtitle": "Delivering quality supplements to millions of customers worldwide.",
+      "metrics": {
+        "products": "Successful Products Launched",
+        "satisfaction": "Customer Satisfaction",
+        "countries": "Countries Served",
+        "production": "Metric Tons Produced"
+      }
+    },
+    "productInspiration": {
+      "title": "Product Inspiration",
+      "subtitle": "Explore our diverse range of successful formulations and find inspiration for your next product"
+    }
+  },
+  "facilities": {
+    "title": "Our Production Facilities",
+    "netherlands": {
+      "title": "Netherlands Headquarters",
+      "description": "Our main production facility in Enschede, equipped with state-of-the-art manufacturing capabilities.",
+      "address": {
+        "company": "Mondial Pack B.V.",
+        "street": "Rigtersbleek-Aalten 18",
+        "postal": "7521 RB Enschede",
+        "country": "The Netherlands"
+      }
+    },
+    "spain": {
+      "title": "Spain Production Facility",
+      "description": "Our specialized facility in Alhaurín de la Torre, focused on high-volume production and distribution.",
+      "address": {
+        "company": "Mondial Pack Europe S.L.",
+        "street": "Poligono La Moraga, nave 21B",
+        "postal": "29130 Alhaurín de la Torre",
+        "country": "España"
+      }
+    }
+  }
+} 

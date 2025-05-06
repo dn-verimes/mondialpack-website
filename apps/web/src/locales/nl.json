@@ -1,0 +1,179 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "Over ons",
+    "capabilities": "Mogelijkheden",
+    "resources": "Bronnen",
+    "contact": "Contact",
+    "login": "Inloggen"
+  },
+  "common": {
+    "readMore": "Lees meer",
+    "learnMore": "Meer informatie",
+    "viewAll": "Bekijk alles",
+    "loading": "Laden..."
+  },
+  "errors": {
+    "general": "Er is een fout opgetreden",
+    "notFound": "Pagina niet gevonden",
+    "tryAgain": "Probeer het opnieuw"
+  },
+  "footer": {
+    "companyDescription": "Uw vertrouwde partner voor premium supplementen productie, verpakking en levering.",
+    "quickLinks": "Snelle links",
+    "contactUs": "Neem contact op",
+    "stayUpdated": "Blijf op de hoogte",
+    "newsletterDescription": "Abonneer u op onze nieuwsbrief voor de laatste updates en branche-inzichten.",
+    "emailPlaceholder": "Uw e-mailadres",
+    "subscribe": "Abonneer",
+    "copyright": "Alle rechten voorbehouden."
+  },
+  "home": {
+    "hero": {
+      "title": "Van idee tot afgewerkt supplement",
+      "subtitle": "Uw vertrouwde partner voor premium supplementen productie, verpakking en levering met ongeëvenaarde kwaliteit.",
+      "cta": {
+        "primary": "Offerte aanvragen",
+        "secondary": "Meer informatie"
+      }
+    },
+    "about": {
+      "title": "Kwaliteitsproductie voor premium supplementen",
+      "description": "Met meer dan twee decennia ervaring heeft Mondial Pack zich gevestigd als leider in supplementen productie. Onze state-of-the-art faciliteiten en expert team zorgen ervoor dat uw producten voldoen aan de hoogste kwaliteits- en effectiviteitsnormen.",
+      "subDescription": "We zijn trots op onze aandacht voor detail, toewijding aan duurzaamheid en innovatieve aanpak van supplementen productie.",
+      "cta": "Over ons bedrijf"
+    },
+    "process": {
+      "title": "Ons vijfstappenproces",
+      "subtitle": "We hebben ons supplementen productieproces geperfectioneerd om kwaliteit in elke fase te garanderen.",
+      "steps": {
+        "sourcing": {
+          "title": "Inkoop",
+          "description": "Zorgvuldige selectie van premium kwaliteit grondstoffen"
+        },
+        "qualityControl": {
+          "title": "Kwaliteitscontrole",
+          "description": "Rigoureuze tests van alle grondstoffen"
+        },
+        "production": {
+          "title": "Productie",
+          "description": "Productie in state-of-the-art faciliteiten"
+        },
+        "packaging": {
+          "title": "Verpakking",
+          "description": "Maatwerk oplossingen voor uw merk"
+        },
+        "logistics": {
+          "title": "Logistiek",
+          "description": "Betrouwbare verzending en wereldwijde distributie"
+        }
+      }
+    },
+    "capabilities": {
+      "title": "Onze mogelijkheden",
+      "subtitle": "Van formulering tot eindproduct bieden we uitgebreide oplossingen in verschillende formaten en verpakkingsopties.",
+      "categories": {
+        "capsules": {
+          "title": "Capsules",
+          "description": "Hard-shell capsules in verschillende maten en materialen, inclusief vegetarische opties. Aangepaste print- en vulmogelijkheden."
+        },
+        "tablets": {
+          "title": "Tabletten",
+          "description": "Geperste tabletten met nauwkeurige dosering, verschillende vormen en coatings. Gespecialiseerd in zowel directe als gecontroleerde afgifte."
+        },
+        "powders": {
+          "title": "Poeders",
+          "description": "Hoogwaardige poederblends met uitstekende vloeieigenschappen. Aangepaste deeltjesgrootteverdeling en mengmogelijkheden."
+        },
+        "gummies": {
+          "title": "Gummies & Zachte kauwtabletten",
+          "description": "Heerlijke gummies en zachte kauwtabletten met nauwkeurige dosering. Aangepaste vormen, smaken en texturen beschikbaar."
+        },
+        "liquids": {
+          "title": "Vloeistoffen & Sprays",
+          "description": "Vloeibare formuleringen en sprayoplossingen met nauwkeurige dosering. Gespecialiseerd in zowel water- als oliegebaseerde producten."
+        },
+        "sachets": {
+          "title": "Zakjes & Sticks",
+          "description": "Enkeldosis zakjes en sticks voor poeders en granulaat. Aangepaste maten en materialen beschikbaar."
+        }
+      }
+    },
+    "aboutMondialPack": {
+      "title": "Over Mondial Pack",
+      "subtitle": "Met meer dan 20 jaar ervaring hebben we ons gevestigd als leider in nutraceutische productie, waarbij we geavanceerde technologie combineren met farmaceutische kwaliteitsnormen.",
+      "pillars": {
+        "experience": {
+          "title": "Ervaring",
+          "description": "Meer dan twee decennia expertise in nutraceutische productie"
+        },
+        "quality": {
+          "title": "Kwaliteit",
+          "description": "Rigoureuze kwaliteitscontrole en tests in elke productiefase"
+        },
+        "innovation": {
+          "title": "Innovatie",
+          "description": "State-of-the-art faciliteiten en continue procesverbetering"
+        },
+        "partnership": {
+          "title": "Partnerschap",
+          "description": "Samenwerkende aanpak om aan uw unieke productvereisten te voldoen"
+        }
+      },
+      "cta": "Meer over ons"
+    },
+    "processFlow": {
+      "title": "Onze waardeketen",
+      "subtitle": "Van grondstoffen tot eindproducten beheren we elke stap van het proces met expertise en zorg.",
+      "steps": {
+        "sourcing": {
+          "title": "Inkoop",
+          "description": "Strategische inkoop van hoogwaardige grondstoffen en ingrediënten van betrouwbare leveranciers wereldwijd."
+        },
+        "mixing": {
+          "title": "Mengen",
+          "description": "Nauwkeurige formulering en menging van ingrediënten met behulp van geavanceerde mengtechnologie."
+        },
+        "production": {
+          "title": "Productie",
+          "description": "Geavanceerde productieprocessen die consistente kwaliteit en optimale efficiëntie garanderen."
+        },
+        "packaging": {
+          "title": "Verpakking",
+          "description": "Aangepaste verpakkingsoplossingen die uw producten beschermen en de merkpresentatie verbeteren."
+        },
+        "delivery": {
+          "title": "Levering",
+          "description": "Betrouwbare logistiek- en distributiediensten om uw producten efficiënt op de markt te brengen."
+        }
+      }
+    },
+    "facilities": {
+      "title": "Onze Productiefaciliteiten",
+      "netherlands": {
+        "title": "Nederlands Hoofdkantoor",
+        "description": "Onze hoofdproductiefaciliteit in Enschede, uitgerust met state-of-the-art productiecapaciteiten.",
+        "address": {
+          "company": "Mondial Pack B.V.",
+          "street": "Rigtersbleek-Aalten 18",
+          "postal": "7521 RB Enschede",
+          "country": "Nederland"
+        }
+      },
+      "spain": {
+        "title": "Spaanse Productiefaciliteit",
+        "description": "Onze gespecialiseerde faciliteit in Alhaurín de la Torre, gericht op grootschalige productie en distributie.",
+        "address": {
+          "company": "Mondial Pack Europe S.L.",
+          "street": "Poligono La Moraga, nave 21B",
+          "postal": "29130 Alhaurín de la Torre",
+          "country": "Spanje"
+        }
+      }
+    },
+    "productInspiration": {
+      "title": "Product Inspiratie",
+      "subtitle": "Ontdek ons diverse aanbod van succesvolle formuleringen en vind inspiratie voor uw volgende product"
+    }
+  }
+} 

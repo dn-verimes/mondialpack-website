@@ -6,9 +6,53 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+      options: {
+        list: [
+          { title: 'English', value: 'en' },
+          { title: 'Dutch', value: 'nl' },
+          { title: 'Spanish', value: 'es' },
+          { title: 'French', value: 'fr' },
+          { title: 'German', value: 'de' }
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'object',
+      fields: [
+        {
+          name: 'en',
+          title: 'English',
+          type: 'string',
+        },
+        {
+          name: 'nl',
+          title: 'Dutch',
+          type: 'string',
+        },
+        {
+          name: 'es',
+          title: 'Spanish',
+          type: 'string',
+        },
+        {
+          name: 'fr',
+          title: 'French',
+          type: 'string',
+        },
+        {
+          name: 'de',
+          title: 'German',
+          type: 'string',
+        }
+      ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -16,7 +60,7 @@ export default defineType({
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'title.en',
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
@@ -38,12 +82,66 @@ export default defineType({
         {
           name: 'title',
           title: 'SEO Title',
-          type: 'string',
+          type: 'object',
+          fields: [
+            {
+              name: 'en',
+              title: 'English',
+              type: 'string',
+            },
+            {
+              name: 'nl',
+              title: 'Dutch',
+              type: 'string',
+            },
+            {
+              name: 'es',
+              title: 'Spanish',
+              type: 'string',
+            },
+            {
+              name: 'fr',
+              title: 'French',
+              type: 'string',
+            },
+            {
+              name: 'de',
+              title: 'German',
+              type: 'string',
+            }
+          ],
         },
         {
           name: 'description',
           title: 'SEO Description',
-          type: 'text',
+          type: 'object',
+          fields: [
+            {
+              name: 'en',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'nl',
+              title: 'Dutch',
+              type: 'text',
+            },
+            {
+              name: 'es',
+              title: 'Spanish',
+              type: 'text',
+            },
+            {
+              name: 'fr',
+              title: 'French',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'German',
+              type: 'text',
+            }
+          ],
         },
         {
           name: 'image',
@@ -55,12 +153,13 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en',
+      language: 'language',
       slug: 'slug.current',
     },
-    prepare({ title, slug }) {
+    prepare({ title, language, slug }) {
       return {
-        title,
+        title: `${title} (${language})`,
         subtitle: `/${slug}`,
       }
     },

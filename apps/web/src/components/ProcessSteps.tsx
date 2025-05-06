@@ -1,8 +1,7 @@
-
-import React, { useEffect, useRef } from 'react';
-import { Search, ShieldCheck, Factory, PackageCheck, Truck } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { Search, ShieldCheck, Factory, PackageCheck, Truck } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface ProcessStepProps {
   icon: React.ReactNode;
@@ -13,51 +12,52 @@ interface ProcessStepProps {
 
 const ProcessStep: React.FC<ProcessStepProps> = ({ icon, title, description, index }) => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.15 }}
-      viewport={{ once: true, amount: 0.3 }}
-      className={cn(
-        "flex flex-col items-center text-center backdrop-blur-sm",
-        "bg-white/10 p-6 rounded-2xl border border-white/20 shadow-soft hover:shadow-md transition-all duration-300",
-      )}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="bg-white rounded-xl p-6 shadow-soft"
     >
-      <div className="w-20 h-20 flex items-center justify-center rounded-full bg-primary/10 mb-4">
-        {icon}
+      <div className="flex flex-col items-center text-center">
+        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+          {icon}
+        </div>
+        <h3 className="text-xl font-medium text-secondary mb-2">{title}</h3>
+        <p className="text-secondary/80">{description}</p>
       </div>
-      <h3 className="text-xl font-medium mb-2">{title}</h3>
-      <p className="text-secondary/80">{description}</p>
     </motion.div>
   );
 };
 
 const ProcessSteps: React.FC = () => {
+  const { t } = useTranslation();
+  
   const steps = [
     {
       icon: <Search size={40} className="text-primary" />,
-      title: "Sourcing",
-      description: "Careful selection of premium quality raw materials",
+      title: t('home.process.steps.sourcing.title'),
+      description: t('home.process.steps.sourcing.description'),
     },
     {
       icon: <ShieldCheck size={40} className="text-primary" />,
-      title: "Quality Control",
-      description: "Rigorous testing of all raw materials",
+      title: t('home.process.steps.qualityControl.title'),
+      description: t('home.process.steps.qualityControl.description'),
     },
     {
       icon: <Factory size={40} className="text-primary" />,
-      title: "Production",
-      description: "Manufacturing in state-of-the-art facilities",
+      title: t('home.process.steps.production.title'),
+      description: t('home.process.steps.production.description'),
     },
     {
       icon: <PackageCheck size={40} className="text-primary" />,
-      title: "Packaging",
-      description: "Custom solutions for your brand",
+      title: t('home.process.steps.packaging.title'),
+      description: t('home.process.steps.packaging.description'),
     },
     {
       icon: <Truck size={40} className="text-primary" />,
-      title: "Logistics",
-      description: "Reliable shipping and global distribution",
+      title: t('home.process.steps.logistics.title'),
+      description: t('home.process.steps.logistics.description'),
     },
   ];
 
@@ -71,9 +71,9 @@ const ProcessSteps: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">Our Five-Step Process</h2>
+          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">{t('home.process.title')}</h2>
           <p className="text-lg text-secondary/80 max-w-2xl mx-auto">
-            We've perfected our supplement manufacturing process to ensure quality at every stage.
+            {t('home.process.subtitle')}
           </p>
         </motion.div>
 

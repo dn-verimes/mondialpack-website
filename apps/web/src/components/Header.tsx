@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { User } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 const Header: React.FC = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -40,16 +43,6 @@ const Header: React.FC = () => {
           />
         </Link>
 
-        {/* Mobile menu toggle */}
-        <button
-          className={cn("md:hidden transition-colors duration-300 z-50", isScrolled ? 'text-primary' : 'text-white')}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <span className={cn("block w-6 h-0.5 mb-1.5 transition-all duration-300", mobileMenuIconColor, isMenuOpen ? "transform rotate-45 translate-y-2" : "")}></span>
-          <span className={cn("block w-6 h-0.5 mb-1.5 transition-all duration-300", mobileMenuIconColor, isMenuOpen ? "opacity-0" : "")}></span>
-          <span className={cn("block w-6 h-0.5 transition-all duration-300", mobileMenuIconColor, isMenuOpen ? "transform -rotate-45 -translate-y-2" : "")}></span>
-        </button>
-
         {/* Navigation */}
         <nav className={cn(
           // Mobile styles
@@ -59,22 +52,39 @@ const Header: React.FC = () => {
           "bg-white/5 md:bg-transparent"
         )}>
           <ul className="flex flex-col md:flex-row h-full md:h-auto items-center justify-center md:justify-start space-y-8 md:space-y-0 md:space-x-8 p-4 md:p-0">
-            <li><Link to="/" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-            <li><Link to="/about" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>About</Link></li>
-            <li><Link to="/capabilities" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Capabilities</Link></li>
-            <li><Link to="/resources" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Resources</Link></li>
-            <li><Link to="/contact" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+            <li><Link to="/" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>{t('navigation.home')}</Link></li>
+            <li><Link to="/about" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>{t('navigation.about')}</Link></li>
+            <li><Link to="/capabilities" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>{t('navigation.capabilities')}</Link></li>
+            <li><Link to="/resources" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>{t('navigation.resources')}</Link></li>
+            <li><Link to="/contact" className={cn("font-semibold text-2xl md:text-base transition-colors duration-300", navTextColor)} onClick={() => setIsMenuOpen(false)}>{t('navigation.contact')}</Link></li>
           </ul>
         </nav>
 
-        {/* User icon */}
-        <div className="hidden md:flex items-center">
+        {/* Right side items */}
+        <div className="flex items-center space-x-4">
+          <LanguageSwitcher isScrolled={isScrolled} />
+          
+          {/* User icon - hidden on mobile */}
           <Link
             to="/login"
-            className={cn("flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors duration-300", iconColor)}
+            className={cn(
+              "hidden md:flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors duration-300",
+              iconColor
+            )}
+            aria-label={t('navigation.login')}
           >
             <User size={20} />
           </Link>
+
+          {/* Mobile menu toggle */}
+          <button
+            className={cn("md:hidden transition-colors duration-300 z-50", isScrolled ? 'text-primary' : 'text-white')}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <span className={cn("block w-6 h-0.5 mb-1.5 transition-all duration-300", mobileMenuIconColor, isMenuOpen ? "transform rotate-45 translate-y-2" : "")}></span>
+            <span className={cn("block w-6 h-0.5 mb-1.5 transition-all duration-300", mobileMenuIconColor, isMenuOpen ? "opacity-0" : "")}></span>
+            <span className={cn("block w-6 h-0.5 transition-all duration-300", mobileMenuIconColor, isMenuOpen ? "transform -rotate-45 -translate-y-2" : "")}></span>
+          </button>
         </div>
       </div>
     </header>

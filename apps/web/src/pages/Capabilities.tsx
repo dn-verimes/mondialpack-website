@@ -17,6 +17,8 @@ import { client, CAPABILITIES_QUERY } from '../lib/sanity'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
 import FormatCards from '@/components/FormatCards';
+import ProcessFlow from '@/components/ProcessFlow';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Animation variants
 const containerVariants = {
@@ -41,39 +43,26 @@ const itemVariants = {
   }
 };
 
-// StickyNav Component
-const StickyNav = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > window.innerHeight - 70);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
-  return (
-    <div 
-      className={cn(
-        "w-full py-3 bg-white transition-all duration-300 z-40",
-        isScrolled ? "sticky top-0 shadow-md" : ""
-      )}
-    >
-      <div className="container flex justify-center space-x-4">
-        <a href="#formats" className="px-6 py-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors">
-          Formats
-        </a>
-        <a href="#packaging" className="px-6 py-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors">
-          Packaging
-        </a>
-      </div>
-    </div>
-  );
-};
-
 // CapabilityItem Component
 const CapabilityItem = ({ capability }: { capability: SanityCapability }) => {
+  const { language } = useLanguage();
+  
+  const getImageUrl = (image: any) => {
+    if (!image) return null;
+    
+    // If the image is still uploading, use the preview image
+    if (image._upload?.previewImage) {
+      return image._upload.previewImage;
+    }
+    
+    // If the image is fully processed, use urlFor
+    if (image.asset?._ref) {
+      return urlFor(image).width(64).height(64).url();
+    }
+    
+    return null;
+  };
+
   return (
     <motion.div
       variants={itemVariants}
@@ -81,10 +70,18 @@ const CapabilityItem = ({ capability }: { capability: SanityCapability }) => {
     >
       <div className="flex flex-col items-center text-center">
         <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-          <span className="text-3xl text-primary">{capability.icon}</span>
+          {capability.image ? (
+            <img 
+              src={getImageUrl(capability.image)} 
+              alt={capability.image.alt?.[language] || capability.title[language]}
+              className="w-12 h-12 object-contain"
+            />
+          ) : (
+            <span className="text-3xl text-primary">{capability.icon}</span>
+          )}
         </div>
-        <h3 className="text-xl font-medium mb-2">{capability.title}</h3>
-        <p className="text-secondary/80 text-sm">{capability.description}</p>
+        <h3 className="text-xl font-medium mb-2">{capability.title[language]}</h3>
+        <p className="text-secondary/80 text-sm">{capability.description[language]}</p>
       </div>
     </motion.div>
   );
@@ -146,9 +143,9 @@ const Capabilities = () => {
           title="Our Capabilities"
           subtitle="From formulation to finished product, discover our comprehensive manufacturing capabilities."
         />
-        <StickyNav />
-        <CapabilitiesGrid />
         <FormatCards />
+        <ProcessFlow />
+        <CapabilitiesGrid />
       </main>
       <Footer />
     </>

@@ -1,0 +1,179 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "capabilities": "Capacités",
+    "resources": "Ressources",
+    "contact": "Contact",
+    "login": "Connexion"
+  },
+  "common": {
+    "readMore": "Lire la suite",
+    "learnMore": "En savoir plus",
+    "viewAll": "Voir tout",
+    "loading": "Chargement..."
+  },
+  "errors": {
+    "general": "Une erreur est survenue",
+    "notFound": "Page non trouvée",
+    "tryAgain": "Veuillez réessayer"
+  },
+  "footer": {
+    "companyDescription": "Votre partenaire de confiance pour la fabrication, l'emballage et la livraison de compléments alimentaires premium.",
+    "quickLinks": "Liens rapides",
+    "contactUs": "Contactez-nous",
+    "stayUpdated": "Restez informé",
+    "newsletterDescription": "Abonnez-vous à notre newsletter pour recevoir les dernières actualités et informations du secteur.",
+    "emailPlaceholder": "Votre adresse e-mail",
+    "subscribe": "S'abonner",
+    "copyright": "Tous droits réservés."
+  },
+  "home": {
+    "hero": {
+      "title": "De l'idée au complément alimentaire fini",
+      "subtitle": "Votre partenaire de confiance pour la fabrication, l'emballage et la livraison de compléments alimentaires premium avec une qualité inégalée.",
+      "cta": {
+        "primary": "Demander un devis",
+        "secondary": "En savoir plus"
+      }
+    },
+    "about": {
+      "title": "Fabrication de qualité pour compléments alimentaires premium",
+      "description": "Avec plus de deux décennies d'expérience, Mondial Pack s'est établi comme leader dans la fabrication de compléments alimentaires. Nos installations de pointe et notre équipe d'experts garantissent que vos produits répondent aux normes de qualité et d'efficacité les plus élevées.",
+      "subDescription": "Nous sommes fiers de notre attention aux détails, de notre engagement envers la durabilité et de notre approche innovante de la production de compléments alimentaires.",
+      "cta": "À propos de notre entreprise"
+    },
+    "process": {
+      "title": "Notre processus en cinq étapes",
+      "subtitle": "Nous avons perfectionné notre processus de fabrication de compléments alimentaires pour garantir la qualité à chaque étape.",
+      "steps": {
+        "sourcing": {
+          "title": "Approvisionnement",
+          "description": "Sélection minutieuse de matières premières de qualité premium"
+        },
+        "qualityControl": {
+          "title": "Contrôle qualité",
+          "description": "Tests rigoureux de toutes les matières premières"
+        },
+        "production": {
+          "title": "Production",
+          "description": "Fabrication dans des installations de pointe"
+        },
+        "packaging": {
+          "title": "Emballage",
+          "description": "Solutions personnalisées pour votre marque"
+        },
+        "logistics": {
+          "title": "Logistique",
+          "description": "Expédition fiable et distribution mondiale"
+        }
+      }
+    },
+    "capabilities": {
+      "title": "Nos capacités",
+      "subtitle": "De la formulation au produit fini, nous proposons des solutions complètes dans différents formats et options d'emballage.",
+      "categories": {
+        "capsules": {
+          "title": "Gélules",
+          "description": "Gélules à coque dure en différentes tailles et matériaux, y compris des options végétariennes. Capacités d'impression et de remplissage personnalisées."
+        },
+        "tablets": {
+          "title": "Comprimés",
+          "description": "Comprimés avec dosage précis, différentes formes et enrobages. Spécialisés dans la libération immédiate et contrôlée."
+        },
+        "powders": {
+          "title": "Poudres",
+          "description": "Mélanges de poudre de haute qualité avec d'excellentes propriétés d'écoulement. Distribution de taille de particules et capacités de mélange personnalisées."
+        },
+        "gummies": {
+          "title": "Gommes et comprimés à mâcher",
+          "description": "Délicieuses gommes et comprimés à mâcher avec dosage précis. Formes, saveurs et textures personnalisées disponibles."
+        },
+        "liquids": {
+          "title": "Liquides et sprays",
+          "description": "Formulations liquides et solutions en spray avec dosage précis. Spécialisés dans les produits à base d'eau et d'huile."
+        },
+        "sachets": {
+          "title": "Sachets et sticks",
+          "description": "Sachets et sticks à dose unique pour poudres et granulés. Tailles et matériaux personnalisés disponibles."
+        }
+      }
+    },
+    "aboutMondialPack": {
+      "title": "À propos de Mondial Pack",
+      "subtitle": "Avec plus de 20 ans d'expérience, nous nous sommes établis comme leaders dans la fabrication de nutraceutiques, combinant technologie de pointe et normes de qualité pharmaceutique.",
+      "pillars": {
+        "experience": {
+          "title": "Expérience",
+          "description": "Plus de deux décennies d'expertise dans la fabrication de nutraceutiques"
+        },
+        "quality": {
+          "title": "Qualité",
+          "description": "Contrôle qualité rigoureux et tests à chaque étape de la production"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Installations de pointe et amélioration continue des processus"
+        },
+        "partnership": {
+          "title": "Partenariat",
+          "description": "Approche collaborative pour répondre à vos exigences uniques en matière de produits"
+        }
+      },
+      "cta": "En savoir plus sur nous"
+    },
+    "processFlow": {
+      "title": "Notre chaîne de valeur",
+      "subtitle": "Des matières premières aux produits finis, nous gérons chaque étape du processus avec expertise et soin.",
+      "steps": {
+        "sourcing": {
+          "title": "Approvisionnement",
+          "description": "Acquisition stratégique de matières premières et d'ingrédients de haute qualité auprès de fournisseurs fiables dans le monde entier."
+        },
+        "mixing": {
+          "title": "Mélange",
+          "description": "Formulation et mélange précis des ingrédients en utilisant une technologie de mélange de pointe."
+        },
+        "production": {
+          "title": "Production",
+          "description": "Processus de fabrication avancés garantissant une qualité constante et une efficacité optimale."
+        },
+        "packaging": {
+          "title": "Emballage",
+          "description": "Solutions d'emballage personnalisées qui protègent vos produits et améliorent la présentation de la marque."
+        },
+        "delivery": {
+          "title": "Livraison",
+          "description": "Services fiables de logistique et de distribution pour mettre vos produits sur le marché efficacement."
+        }
+      }
+    },
+    "facilities": {
+      "title": "Nos installations de production",
+      "netherlands": {
+        "title": "Siège social aux Pays-Bas",
+        "description": "Notre installation de production principale à Enschede, équipée de capacités de fabrication de pointe.",
+        "address": {
+          "company": "Mondial Pack B.V.",
+          "street": "Rigtersbleek-Aalten 18",
+          "postal": "7521 RB Enschede",
+          "country": "Pays-Bas"
+        }
+      },
+      "spain": {
+        "title": "Installation de production en Espagne",
+        "description": "Notre installation spécialisée à Alhaurín de la Torre, axée sur la production à grand volume et la distribution.",
+        "address": {
+          "company": "Mondial Pack Europe S.L.",
+          "street": "Poligono La Moraga, nave 21B",
+          "postal": "29130 Alhaurín de la Torre",
+          "country": "Espagne"
+        }
+      }
+    },
+    "productInspiration": {
+      "title": "Inspiration Produit",
+      "subtitle": "Découvrez notre gamme diversifiée de formulations réussies et trouvez l'inspiration pour votre prochain produit"
+    }
+  }
+} 

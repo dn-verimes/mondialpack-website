@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { PenTool, Tablet, Droplet, Candy, Wine, ScrollText } from 'lucide-react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import { PenTool, Tablet, Droplet, Candy, Wine, ScrollText } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface CapabilityItemProps {
   icon: React.ReactNode;
@@ -11,74 +11,58 @@ interface CapabilityItemProps {
 }
 
 const CapabilityItem: React.FC<CapabilityItemProps> = ({ icon, title, description, index }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        delay: index * 0.08
-      }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      className={cn(
-        "relative flex flex-col items-center p-6 backdrop-blur-md bg-white rounded-2xl",
-        "border border-gray-100 shadow-soft hover:shadow-md transition-all duration-300",
-        "min-h-[200px]"
-      )}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="bg-white rounded-xl p-6 shadow-soft hover:shadow-md transition-shadow"
     >
-      <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 mb-4">
-        {icon}
+      <div className="flex flex-col">
+        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+          {icon}
+        </div>
+        <h3 className="text-xl font-medium text-secondary mb-2">{title}</h3>
+        <p className="text-secondary/80">{description}</p>
       </div>
-      <h3 className="text-xl font-medium text-center mb-2">{title}</h3>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
-        transition={{ duration: 0.2 }}
-        className="absolute inset-0 flex items-center justify-center p-6 bg-white rounded-2xl"
-      >
-        <p className="text-secondary/80 text-center">{description}</p>
-      </motion.div>
     </motion.div>
   );
 };
 
 const ProductCategories: React.FC = () => {
+  const { t } = useTranslation();
+  
   const capabilities = [
     {
       icon: <PenTool size={28} className="text-primary" />,
-      title: "Capsules",
-      description: "Hard-shell capsules in various sizes and materials, including vegetarian options. Custom printing and filling capabilities."
+      title: t('home.capabilities.categories.capsules.title'),
+      description: t('home.capabilities.categories.capsules.description')
     },
     {
       icon: <Tablet size={28} className="text-primary" />,
-      title: "Tablets",
-      description: "Compressed tablets with precise dosing, various shapes and coatings. Specialized in both immediate and controlled release."
+      title: t('home.capabilities.categories.tablets.title'),
+      description: t('home.capabilities.categories.tablets.description')
     },
     {
       icon: <Droplet size={28} className="text-primary" />,
-      title: "Powders",
-      description: "High-quality powder blends with excellent flow properties. Custom particle size distribution and mixing capabilities."
+      title: t('home.capabilities.categories.powders.title'),
+      description: t('home.capabilities.categories.powders.description')
     },
     {
       icon: <Candy size={28} className="text-primary" />,
-      title: "Gummies & Soft Chews",
-      description: "Delicious gummies and soft chews with precise dosing. Custom shapes, flavors, and textures available."
+      title: t('home.capabilities.categories.gummies.title'),
+      description: t('home.capabilities.categories.gummies.description')
     },
     {
       icon: <Wine size={28} className="text-primary" />,
-      title: "Liquids & Sprays",
-      description: "Liquid formulations and spray solutions with precise dosing. Specialized in both water and oil-based products."
+      title: t('home.capabilities.categories.liquids.title'),
+      description: t('home.capabilities.categories.liquids.description')
     },
     {
       icon: <ScrollText size={28} className="text-primary" />,
-      title: "Sachets & Stick Packs",
-      description: "Single-dose sachets and stick packs for powders and granules. Custom sizes and materials available."
+      title: t('home.capabilities.categories.sachets.title'),
+      description: t('home.capabilities.categories.sachets.description')
     }
   ];
 
@@ -92,9 +76,9 @@ const ProductCategories: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">Our Capabilities</h2>
+          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">{t('home.capabilities.title')}</h2>
           <p className="text-lg text-secondary/80 max-w-3xl mx-auto">
-            From formulation to finished product, we offer comprehensive solutions in various formats and packaging options.
+            {t('home.capabilities.subtitle')}
           </p>
         </motion.div>
 

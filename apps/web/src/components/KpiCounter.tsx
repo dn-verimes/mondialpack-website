@@ -1,74 +1,47 @@
-
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface CounterProps {
   value: number;
-  label: string;
   suffix?: string;
-  duration?: number;
+  label: string;
 }
 
-const Counter: React.FC<CounterProps> = ({ value, label, suffix = '', duration = 2000 }) => {
-  const [count, setCount] = useState(0);
-  const counterRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          let start = 0;
-          const end = Math.min(value, 999999); // Cap for performance
-          const increment = end / (duration / 16); // 60fps
-          
-          const timer = setInterval(() => {
-            start += increment;
-            setCount(Math.min(Math.floor(start), end));
-            
-            if (start >= end) {
-              clearInterval(timer);
-            }
-          }, 16);
-          
-          observer.disconnect();
-          return () => clearInterval(timer);
-        }
-      },
-      { threshold: 0.25 }
-    );
-    
-    if (counterRef.current) {
-      observer.observe(counterRef.current);
-    }
-    
-    return () => observer.disconnect();
-  }, [value, duration]);
-  
+const Counter: React.FC<CounterProps> = ({ value, suffix, label }) => {
   return (
-    <div ref={counterRef} className="text-center px-4">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="text-center"
+    >
       <div className="text-4xl md:text-5xl font-medium text-primary mb-2">
-        {count.toLocaleString()}{suffix}
+        {value}{suffix}
       </div>
-      <p className="text-secondary">{label}</p>
-    </div>
+      <div className="text-secondary/80">{label}</div>
+    </motion.div>
   );
 };
 
 const KpiCounter: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <section className="bg-accent py-16">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">Our Impact in Numbers</h2>
+          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">{t('home.kpi.title')}</h2>
           <p className="text-lg text-secondary/80 max-w-2xl mx-auto">
-            Delivering quality supplements to millions of customers worldwide.
+            {t('home.kpi.subtitle')}
           </p>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <Counter value={150} suffix="+" label="Successful Products Launched" />
-          <Counter value={98} suffix="%" label="Customer Satisfaction" />
-          <Counter value={25} label="Countries Served" />
-          <Counter value={10000} suffix="+" label="Metric Tons Produced" />
+          <Counter value={150} suffix="+" label={t('home.kpi.metrics.products')} />
+          <Counter value={98} suffix="%" label={t('home.kpi.metrics.satisfaction')} />
+          <Counter value={25} label={t('home.kpi.metrics.countries')} />
+          <Counter value={10000} suffix="+" label={t('home.kpi.metrics.production')} />
         </div>
       </div>
     </section>

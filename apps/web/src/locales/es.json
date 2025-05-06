@@ -1,0 +1,179 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "capabilities": "Capacidades",
+    "resources": "Recursos",
+    "contact": "Contacto",
+    "login": "Iniciar sesión"
+  },
+  "common": {
+    "readMore": "Leer más",
+    "learnMore": "Más información",
+    "viewAll": "Ver todo",
+    "loading": "Cargando..."
+  },
+  "errors": {
+    "general": "Ha ocurrido un error",
+    "notFound": "Página no encontrada",
+    "tryAgain": "Por favor, inténtelo de nuevo"
+  },
+  "footer": {
+    "companyDescription": "Su socio de confianza para la fabricación, envasado y entrega de suplementos premium.",
+    "quickLinks": "Enlaces rápidos",
+    "contactUs": "Contáctenos",
+    "stayUpdated": "Manténgase informado",
+    "newsletterDescription": "Suscríbase a nuestro boletín para recibir las últimas actualizaciones e información del sector.",
+    "emailPlaceholder": "Su dirección de correo electrónico",
+    "subscribe": "Suscribirse",
+    "copyright": "Todos los derechos reservados."
+  },
+  "home": {
+    "hero": {
+      "title": "De la idea al suplemento terminado",
+      "subtitle": "Su socio de confianza para la fabricación, envasado y entrega de suplementos premium con calidad inigualable.",
+      "cta": {
+        "primary": "Solicitar presupuesto",
+        "secondary": "Más información"
+      }
+    },
+    "about": {
+      "title": "Fabricación de calidad para suplementos premium",
+      "description": "Con más de dos décadas de experiencia, Mondial Pack se ha establecido como líder en la fabricación de suplementos. Nuestras instalaciones de última generación y nuestro equipo experto garantizan que sus productos cumplan con los más altos estándares de calidad y eficacia.",
+      "subDescription": "Nos enorgullecemos de nuestra atención al detalle, compromiso con la sostenibilidad y enfoque innovador en la producción de suplementos.",
+      "cta": "Sobre nuestra empresa"
+    },
+    "process": {
+      "title": "Nuestro proceso de cinco pasos",
+      "subtitle": "Hemos perfeccionado nuestro proceso de fabricación de suplementos para garantizar la calidad en cada etapa.",
+      "steps": {
+        "sourcing": {
+          "title": "Abastecimiento",
+          "description": "Selección cuidadosa de materias primas de alta calidad"
+        },
+        "qualityControl": {
+          "title": "Control de calidad",
+          "description": "Pruebas rigurosas de todas las materias primas"
+        },
+        "production": {
+          "title": "Producción",
+          "description": "Fabricación en instalaciones de última generación"
+        },
+        "packaging": {
+          "title": "Envasado",
+          "description": "Soluciones personalizadas para su marca"
+        },
+        "logistics": {
+          "title": "Logística",
+          "description": "Envío confiable y distribución global"
+        }
+      }
+    },
+    "capabilities": {
+      "title": "Nuestras capacidades",
+      "subtitle": "Desde la formulación hasta el producto terminado, ofrecemos soluciones integrales en varios formatos y opciones de envasado.",
+      "categories": {
+        "capsules": {
+          "title": "Cápsulas",
+          "description": "Cápsulas de cubierta dura en varios tamaños y materiales, incluyendo opciones vegetarianas. Capacidades de impresión y llenado personalizadas."
+        },
+        "tablets": {
+          "title": "Comprimidos",
+          "description": "Comprimidos con dosificación precisa, varias formas y recubrimientos. Especializados en liberación inmediata y controlada."
+        },
+        "powders": {
+          "title": "Polvos",
+          "description": "Mezclas de polvo de alta calidad con excelentes propiedades de flujo. Distribución de tamaño de partícula y capacidades de mezcla personalizadas."
+        },
+        "gummies": {
+          "title": "Gomitas y masticables",
+          "description": "Deliciosas gomitas y masticables con dosificación precisa. Formas, sabores y texturas personalizadas disponibles."
+        },
+        "liquids": {
+          "title": "Líquidos y sprays",
+          "description": "Formulaciones líquidas y soluciones en spray con dosificación precisa. Especializados en productos a base de agua y aceite."
+        },
+        "sachets": {
+          "title": "Sobres y sticks",
+          "description": "Sobres y sticks de dosis única para polvos y gránulos. Tamaños y materiales personalizados disponibles."
+        }
+      }
+    },
+    "aboutMondialPack": {
+      "title": "Sobre Mondial Pack",
+      "subtitle": "Con más de 20 años de experiencia, nos hemos establecido como líderes en la fabricación de nutracéuticos, combinando tecnología de vanguardia con estándares de calidad farmacéutica.",
+      "pillars": {
+        "experience": {
+          "title": "Experiencia",
+          "description": "Más de dos décadas de experiencia en la fabricación de nutracéuticos"
+        },
+        "quality": {
+          "title": "Calidad",
+          "description": "Control de calidad riguroso y pruebas en cada etapa de la producción"
+        },
+        "innovation": {
+          "title": "Innovación",
+          "description": "Instalaciones de última generación y mejora continua de procesos"
+        },
+        "partnership": {
+          "title": "Asociación",
+          "description": "Enfoque colaborativo para satisfacer sus requisitos únicos de productos"
+        }
+      },
+      "cta": "Más información sobre nosotros"
+    },
+    "processFlow": {
+      "title": "Nuestra cadena de valor",
+      "subtitle": "Desde materias primas hasta productos terminados, manejamos cada paso del proceso con experiencia y cuidado.",
+      "steps": {
+        "sourcing": {
+          "title": "Abastecimiento",
+          "description": "Adquisición estratégica de materias primas e ingredientes de alta calidad de proveedores confiables en todo el mundo."
+        },
+        "mixing": {
+          "title": "Mezcla",
+          "description": "Formulación y mezcla precisa de ingredientes utilizando tecnología de mezcla de última generación."
+        },
+        "production": {
+          "title": "Producción",
+          "description": "Procesos de fabricación avanzados que garantizan calidad consistente y eficiencia óptima."
+        },
+        "packaging": {
+          "title": "Envasado",
+          "description": "Soluciones de envasado personalizadas que protegen sus productos y mejoran la presentación de la marca."
+        },
+        "delivery": {
+          "title": "Entrega",
+          "description": "Servicios confiables de logística y distribución para llevar sus productos al mercado de manera eficiente."
+        }
+      }
+    },
+    "facilities": {
+      "title": "Nuestras instalaciones de producción",
+      "netherlands": {
+        "title": "Sede en Países Bajos",
+        "description": "Nuestra instalación de producción principal en Enschede, equipada con capacidades de fabricación de última generación.",
+        "address": {
+          "company": "Mondial Pack B.V.",
+          "street": "Rigtersbleek-Aalten 18",
+          "postal": "7521 RB Enschede",
+          "country": "Países Bajos"
+        }
+      },
+      "spain": {
+        "title": "Instalación de producción en España",
+        "description": "Nuestra instalación especializada en Alhaurín de la Torre, enfocada en producción de alto volumen y distribución.",
+        "address": {
+          "company": "Mondial Pack Europe S.L.",
+          "street": "Poligono La Moraga, nave 21B",
+          "postal": "29130 Alhaurín de la Torre",
+          "country": "España"
+        }
+      }
+    },
+    "productInspiration": {
+      "title": "Inspiración de Productos",
+      "subtitle": "Explore nuestra diversa gama de formulaciones exitosas y encuentre inspiración para su próximo producto"
+    }
+  }
+} 
