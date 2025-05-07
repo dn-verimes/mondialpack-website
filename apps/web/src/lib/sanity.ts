@@ -1,5 +1,5 @@
 import { createClient, ClientPerspective } from '@sanity/client'
-import { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { SanityImageSource } from '@sanity/image-url'
 import imageUrlBuilder from '@sanity/image-url'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -7,7 +7,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 const config = {
   projectId: 'njtli2jq',
   dataset: 'production',
-  apiVersion: '2024-05-05',
+  apiVersion: '2025-02-10',
   useCdn: !isDevelopment,
   withCredentials: false,
   token: undefined,

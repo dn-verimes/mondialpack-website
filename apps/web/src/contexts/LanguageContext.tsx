@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import i18n from 'i18next';
 
 type Language = 'en' | 'nl' | 'es' | 'fr' | 'de';
 
@@ -22,6 +23,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('language', language);
     // Update HTML lang attribute
     document.documentElement.lang = language;
+    // Sync with i18next
+    i18n.changeLanguage(language);
   }, [language]);
 
   return (

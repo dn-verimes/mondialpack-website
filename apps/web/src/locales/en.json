@@ -193,28 +193,28 @@
     "productInspiration": {
       "title": "Product Inspiration",
       "subtitle": "Explore our diverse range of successful formulations and find inspiration for your next product"
-    }
-  },
-  "facilities": {
-    "title": "Our Production Facilities",
-    "netherlands": {
-      "title": "Netherlands Headquarters",
-      "description": "Our main production facility in Enschede, equipped with state-of-the-art manufacturing capabilities.",
-      "address": {
-        "company": "Mondial Pack B.V.",
-        "street": "Rigtersbleek-Aalten 18",
-        "postal": "7521 RB Enschede",
-        "country": "The Netherlands"
-      }
     },
-    "spain": {
-      "title": "Spain Production Facility",
-      "description": "Our specialized facility in Alhaurín de la Torre, focused on high-volume production and distribution.",
-      "address": {
-        "company": "Mondial Pack Europe S.L.",
-        "street": "Poligono La Moraga, nave 21B",
-        "postal": "29130 Alhaurín de la Torre",
-        "country": "España"
+    "facilities": {
+      "title": "Our Production Facilities",
+      "netherlands": {
+        "title": "Netherlands Headquarters",
+        "description": "Our main production facility in Enschede, equipped with state-of-the-art manufacturing capabilities.",
+        "address": {
+          "company": "Mondial Pack B.V.",
+          "street": "Rigtersbleek-Aalten 18",
+          "postal": "7521 RB Enschede",
+          "country": "The Netherlands"
+        }
+      },
+      "spain": {
+        "title": "Spain Production Facility",
+        "description": "Our specialized facility in Alhaurín de la Torre, focused on high-volume production and distribution.",
+        "address": {
+          "company": "Mondial Pack Europe S.L.",
+          "street": "Poligono La Moraga, nave 21B",
+          "postal": "29130 Alhaurín de la Torre",
+          "country": "España"
+        }
       }
     }
   }

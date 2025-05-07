@@ -171,6 +171,12 @@
         }
       }
     },
+    "cta": {
+      "title": "Bereit, Ihre Nahrungsergänzungsmittel-Idee zum Leben zu erwecken?",
+      "subtitle": "Werden Sie Partner von Mondial Pack für End-to-End-Lösungen in der Herstellung und Verpackung von Nahrungsergänzungsmitteln.",
+      "primary": "Angebot anfordern",
+      "secondary": "Kontaktieren Sie unser Team"
+    },
     "productInspiration": {
       "title": "Produkt-Inspiration",
       "subtitle": "Entdecken Sie unsere vielfältige Palette erfolgreicher Formulierungen und finden Sie Inspiration für Ihr nächstes Produkt"

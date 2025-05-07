@@ -171,6 +171,12 @@
         }
       }
     },
+    "cta": {
+      "title": "¿Listo para dar vida a tu idea de suplemento?",
+      "subtitle": "Asóciate con Mondial Pack para soluciones integrales de fabricación y envasado de suplementos.",
+      "primary": "Solicitar presupuesto",
+      "secondary": "Contactar con nuestro equipo"
+    },
     "productInspiration": {
       "title": "Inspiración de Productos",
       "subtitle": "Explore nuestra diversa gama de formulaciones exitosas y encuentre inspiración para su próximo producto"
