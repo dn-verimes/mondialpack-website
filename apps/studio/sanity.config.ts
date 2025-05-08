@@ -12,6 +12,7 @@ export default defineConfig({
 
   projectId: 'njtli2jq',
   dataset: 'production',
+  apiVersion: '2025-05-07',
 
   plugins: [
     deskTool(),
@@ -26,7 +27,7 @@ export default defineConfig({
         {id: 'de', title: 'German'},
       ],
       // Schema types that should have translations
-      schemaTypes: ['page', 'capability'],
+      schemaTypes: ['capability'],
       languageField: 'language',
       bulkPublish: true,
     }),
@@ -40,6 +41,8 @@ export default defineConfig({
         {id: 'fr', title: 'French'},
         {id: 'de', title: 'German'},
       ],
+      defaultLanguages: ['en'],
+      fieldTypes: ['string'],
     }),
 
     // AI-powered translation assistance

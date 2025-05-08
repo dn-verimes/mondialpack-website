@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'capability',
-  title: 'Capability',
+  title: 'Capabilities',
   type: 'document',
   fields: [
     defineField({
@@ -20,7 +20,7 @@ export default defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Short Description',
       type: 'text',
       validation: (Rule) => Rule.required(),
     }),
@@ -38,7 +38,25 @@ export default defineType({
       description: 'Icon image for the capability (optional)',
       options: {
         hotspot: true,
-        metadata: ['dimensions', 'lqip'],
+        metadata: ['lqip'],
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessibility.',
+        },
+      ],
+    }),
+    defineField({
+      name: 'fullSizeImage',
+      title: 'Full Size Image',
+      type: 'image',
+      description: 'Large image to display on the capability detail page',
+      options: {
+        hotspot: true,
+        metadata: ['lqip'],
       },
       fields: [
         {
@@ -67,6 +85,121 @@ export default defineType({
         ],
       },
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'longDescription',
+      title: 'Detailed Description',
+      type: 'array',
+      of: [{ type: 'block' }],
+      description: 'Detailed description of the capability',
+    }),
+    defineField({
+      name: 'keyFeatures',
+      title: 'Key Features',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'title', type: 'string', title: 'Feature Title' },
+            { name: 'description', type: 'text', title: 'Feature Description' },
+            { name: 'icon', type: 'string', title: 'Feature Icon' },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'gallery',
+      title: 'Photo Gallery',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+            metadata: ['lqip'],
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative text',
+              description: 'Important for SEO and accessibility.',
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              description: 'Optional caption for the image',
+            },
+          ],
+        },
+      ],
+      description: 'Add photos to create a gallery',
+    }),
+    defineField({
+      name: 'specifications',
+      title: 'Technical Specifications',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'name', type: 'string', title: 'Specification Name' },
+            { name: 'value', type: 'string', title: 'Specification Value' },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'applications',
+      title: 'Applications',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of applications for this capability',
+    }),
+    defineField({
+      name: 'benefits',
+      title: 'Benefits',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'title', type: 'string', title: 'Benefit Title' },
+            { name: 'description', type: 'text', title: 'Benefit Description' },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'processSteps',
+      title: 'Process Steps',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'title', type: 'string', title: 'Step Title' },
+            { name: 'description', type: 'text', title: 'Step Description' },
+            { name: 'image', type: 'image', title: 'Step Image' },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'faqs',
+      title: 'Frequently Asked Questions',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'question', type: 'string', title: 'Question' },
+            { name: 'answer', type: 'text', title: 'Answer' },
+          ],
+        },
+      ],
     }),
   ],
   preview: {

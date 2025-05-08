@@ -1,5 +1,5 @@
 import { createClient, ClientPerspective } from '@sanity/client'
-import type { SanityImageSource } from '@sanity/image-url'
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import imageUrlBuilder from '@sanity/image-url'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -7,7 +7,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 const config = {
   projectId: 'njtli2jq',
   dataset: 'production',
-  apiVersion: '2025-02-10',
+  apiVersion: '2025-05-07',
   useCdn: !isDevelopment,
   withCredentials: false,
   token: undefined,
@@ -45,8 +45,31 @@ export const CAPABILITIES_QUERY = `*[_type == "capability" && language == $langu
   icon,
   order,
   image,
-  specifications,
   category,
+  longDescription,
+  keyFeatures[] {
+    title,
+    description,
+    icon
+  },
+  specifications[] {
+    name,
+    value
+  },
+  applications,
+  benefits[] {
+    title,
+    description
+  },
+  processSteps[] {
+    title,
+    description,
+    image
+  },
+  faqs[] {
+    question,
+    answer
+  },
   "translations": *[_type == "capability" && _id != ^._id && references(^._id)]{
     _id,
     language,

@@ -19,6 +19,7 @@ import { AlertCircle } from 'lucide-react';
 import FormatCards from '@/components/FormatCards';
 import ProcessFlow from '@/components/ProcessFlow';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 
 // Animation variants
 const containerVariants = {
@@ -46,6 +47,7 @@ const itemVariants = {
 // CapabilityItem Component
 const CapabilityItem = ({ capability }: { capability: SanityCapability }) => {
   const { language } = useLanguage();
+  const navigate = useNavigate();
   
   const getImageUrl = (image: any) => {
     if (!image) return null;
@@ -63,10 +65,17 @@ const CapabilityItem = ({ capability }: { capability: SanityCapability }) => {
     return null;
   };
 
+  const handleClick = () => {
+    const titleSlug = capability.title[language].toLowerCase().replace(/\s+/g, '-');
+    navigate(`/capabilities/${capability._id}/${titleSlug}`);
+  };
+
   return (
     <motion.div
       variants={itemVariants}
-      className="bg-white rounded-lg shadow-md overflow-hidden p-6 hover:shadow-lg transition-shadow"
+      className="bg-white rounded-lg shadow-md overflow-hidden p-6 hover:shadow-lg transition-shadow cursor-pointer"
+      whileHover={{ scale: 1.02 }}
+      onClick={handleClick}
     >
       <div className="flex flex-col items-center text-center">
         <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">

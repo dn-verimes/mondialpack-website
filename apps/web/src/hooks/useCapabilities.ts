@@ -8,22 +8,50 @@ const fetchCapabilities = async (language: string): Promise<SanityCapability[]> 
     const query = `*[_type == "capability" && language == $language]{
       _id,
       _type,
+      language,
       title,
       description,
-      image,
-      specifications,
       icon,
+      image,
+      fullSizeImage,
+      order,
       category,
-      sizeRange,
-      shellTypes,
-      fillWeight,
-      colorPrint,
-      moq,
-      leadTime,
-      volume,
-      closureTypes,
-      labelArea,
-      packCounts
+      longDescription,
+      keyFeatures[]{
+        icon,
+        title,
+        description
+      },
+      gallery[]{
+        _type,
+        asset,
+        alt,
+        caption
+      },
+      specifications[]{
+        name,
+        value
+      },
+      applications,
+      benefits[]{
+        title,
+        description
+      },
+      processSteps[]{
+        title,
+        description,
+        image
+      },
+      faqs[]{
+        question,
+        answer
+      },
+      translations[]{
+        _id,
+        language,
+        title,
+        description
+      }
     }`;
     
     return await client.fetch(query, { language });
@@ -35,7 +63,7 @@ const fetchCapabilities = async (language: string): Promise<SanityCapability[]> 
 export const useCapabilities = () => {
   const { language } = useLanguage();
   
-  return useQuery({
+  return useQuery<SanityCapability[]>({
     queryKey: ['capabilities', language],
     queryFn: () => fetchCapabilities(language),
     staleTime: 5 * 60 * 1000, // Data is considered fresh for 5 minutes

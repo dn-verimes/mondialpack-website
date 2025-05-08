@@ -16,5 +16,16 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "@portabletext/react": "^3.2.1",
+    "@portabletext/types": "^2.0.13",
+    "@sanity/assist": "^4.2.0",
+    "@sanity/client": "^6.15.9",
+    "@sanity/document-internationalization": "^3.3.1",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.88.0",
+    "sanity": "^3.88.0",
+    "sanity-plugin-internationalized-array": "^3.1.3"
   }
 }

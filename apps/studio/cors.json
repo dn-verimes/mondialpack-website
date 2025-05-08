@@ -7,6 +7,14 @@
     {
       "origin": "http://192.168.178.225:8082",
       "allowCredentials": true
+    },
+    {
+      "origin": "http://localhost:3333",
+      "allowCredentials": true
+    },
+    {
+      "origin": "https://mondialpack.sanity.studio",
+      "allowCredentials": true
     }
   ]
 } 

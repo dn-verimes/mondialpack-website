@@ -1,82 +1,40 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Clock, Building } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Building } from 'lucide-react';
 import Button from '@/components/Button';
-import { cn } from '@/lib/utils';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
+import Timeline from '@/components/Timeline';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/lib/sanity';
 
 const AboutPage: React.FC = () => {
-  // References for scroll animations
-  const timelineRef = useRef<HTMLDivElement>(null);
-  
-  // Timeline milestones data
-  const timelineMilestones = [
-    {
-      year: "1995",
-      milestone: "Piet van Riel opens a 300 m² bottle‑filling shop in Enschede, supplying Dutch pharmacies."
+  // First, let's fetch the timeline milestones directly
+  const { data: milestones, isLoading, error } = useQuery({
+    queryKey: ['timeline-milestones'],
+    queryFn: async () => {
+      const query = `*[_type == "timelineMilestone"] | order(order asc) {
+        _id,
+        _type,
+        year,
+        milestone,
+        order
+      }`;
+      console.log('Fetching timeline milestones...');
+      const result = await client.fetch(query);
+      console.log('Timeline milestones:', result);
+      return result;
     },
-    {
-      year: "2002",
-      milestone: "First GMP capsule turret installed; Mondial Pack enters the nutraceutical market."
-    },
-    {
-      year: "2008",
-      milestone: "Factory 2.0 adds high‑speed tablet presses and blister thermoformers, lifting annual output above 200 million units."
-    },
-    {
-      year: "2013",
-      milestone: "In‑house R&D lab allows clients to taste pilot samples in under ten days."
-    },
-    {
-      year: "2017",
-      milestone: "Softgel department launched; vegan alginate and omega‑3 formats go live."
-    },
-    {
-      year: "2022",
-      milestone: "Rooftop solar array cuts CO₂ / pack by 38 %."
-    },
-    {
-      year: "Jan 2024",
-      milestone: "Night‑time fire severely damages our primary production hall. No injuries, but 100% of capacity lost."
-    },
-    {
-      year: "Mar 2024 → today",
-      milestone: "Temporary production secured via partner sites; design of a next‑generation plant begins."
-    },
-    {
-      year: "May 2025",
-      milestone: "Construction starts at Aluminiumsteden 10 – a two‑storey, ± 6,000 m² facility with:\n• 1,820 m² climate‑controlled warehouse\n• 740 m² high‑speed filling hall\n• 360 m² dedicated blister suites\n• 900 m² capsule & powder floor on level 1"
-    },
-    {
-      year: "2026 (planned)",
-      milestone: "Re‑opening: rebuilt site triples softgel output, doubles blister capacity, and features real‑time batch‑tracking for clients."
-    }
-  ];
+  });
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
+  // Debug logs
+  console.log('Query state:', {
+    isLoading,
+    error,
+    hasData: !!milestones,
+    milestones
+  });
 
   return (
     <>
@@ -87,85 +45,32 @@ const AboutPage: React.FC = () => {
           subtitle="From humble beginnings to industry leader in supplement manufacturing"
           showButtons={false}
         />
-        {/* Rest of the About page content */}
-        <section ref={timelineRef} className="py-20 bg-white">
-          <div className="container">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-6">
-                Our Journey
-              </h2>
-              <div className="w-24 h-1 bg-primary mx-auto"></div>
-            </div>
-            
-            {/* Timeline */}
-            <motion.div 
-              className="relative"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              {/* Timeline center line */}
-              <div className="absolute left-1/2 top-0 w-0.5 h-full bg-primary/20 transform -translate-x-1/2 hidden md:block"></div>
-              
-              {/* Timeline items */}
-              {timelineMilestones.map((item, index) => (
-                <motion.div 
-                  key={index} 
-                  className="relative mb-16 md:mb-24 last:mb-0"
-                  variants={itemVariants}
-                >
-                  {/* Mobile version (stack) */}
-                  <div className="flex md:hidden mb-4">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center mr-3">
-                      <Clock size={18} className="text-white" />
-                    </div>
-                    <h3 className="text-xl font-medium text-secondary self-center">{item.year}</h3>
-                  </div>
-                  
-                  {/* Desktop version (side-by-side) */}
-                  <div className="hidden md:flex">
-                    {/* Timeline center point */}
-                    <div className="absolute left-1/2 top-0 transform -translate-x-1/2 w-10 h-10 rounded-full bg-white border-2 border-primary flex items-center justify-center z-10">
-                      <Clock size={18} className="text-primary" />
-                    </div>
-                    
-                    {/* Content container */}
-                    <div className={cn(
-                      "grid md:grid-cols-2 gap-6 w-full",
-                      "relative"
-                    )}>
-                      {/* Year - alternating sides */}
-                      <div className={cn(
-                        "md:text-right md:pr-16",
-                        index % 2 === 1 && "md:col-start-2 md:text-left md:pl-16 md:pr-0"
-                      )}>
-                        <div className="bg-alice rounded-lg p-5 inline-block glass-morphism">
-                          <h3 className="text-xl font-medium text-secondary">{item.year}</h3>
-                        </div>
-                      </div>
-                      
-                      {/* Content - alternating sides */}
-                      <div className={cn(
-                        "md:text-left md:pl-16 self-start",
-                        index % 2 === 1 && "md:col-start-1 md:row-start-1 md:text-right md:pr-16 md:pl-0"
-                      )}>
-                        <div className="bg-white shadow-soft rounded-lg p-5">
-                          <p className="text-secondary/80 whitespace-pre-line">{item.milestone}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Mobile milestone content */}
-                  <div className="md:hidden bg-white shadow-soft rounded-lg p-5 ml-12">
-                    <p className="text-secondary/80 whitespace-pre-line">{item.milestone}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+        
+        {/* Timeline Section */}
+        {isLoading && (
+          <div className="container py-20 text-center">
+            <p>Loading timeline...</p>
           </div>
-        </section>
+        )}
+        
+        {error && (
+          <div className="container py-20 text-center text-red-500">
+            <p>Error loading timeline: {error.message}</p>
+          </div>
+        )}
+        
+        {!isLoading && milestones && milestones.length > 0 && (
+          <Timeline 
+            title="Our Journey"
+            milestones={milestones}
+          />
+        )}
+        
+        {!isLoading && (!milestones || milestones.length === 0) && (
+          <div className="container py-20 text-center">
+            <p>No timeline milestones found. Please add milestones in Sanity Studio.</p>
+          </div>
+        )}
         
         {/* Facilities Section */}
         <section className="py-16 bg-alice">

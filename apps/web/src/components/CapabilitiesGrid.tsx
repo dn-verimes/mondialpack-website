@@ -6,6 +6,7 @@ import { SanityCapability } from '@/types/sanity';
 import { Skeleton } from '@/components/ui/skeleton';
 import { urlFor } from '@/lib/sanity';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 interface CapabilityItemProps {
   capability: SanityCapability;
@@ -14,6 +15,8 @@ interface CapabilityItemProps {
 
 const CapabilityItem: React.FC<CapabilityItemProps> = ({ capability, index }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const getImageUrl = (image: any) => {
     if (!image) return null;
@@ -31,6 +34,16 @@ const CapabilityItem: React.FC<CapabilityItemProps> = ({ capability, index }) =>
     return null;
   };
 
+  const handleClick = () => {
+    const titleSlug = capability.title
+      .toLowerCase()
+      .trim()
+      .replace(/[\u200B-\u200D\uFEFF]/g, '') // Remove zero-width spaces
+      .replace(/[^a-z0-9]+/g, '-') // Replace any non-alphanumeric chars with hyphens
+      .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+    navigate(`/capabilities/${capability._id}/${titleSlug}`);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -39,10 +52,11 @@ const CapabilityItem: React.FC<CapabilityItemProps> = ({ capability, index }) =>
       transition={{ duration: 0.3, delay: index * 0.1 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
+      onClick={handleClick}
       className={cn(
         "relative flex flex-col items-center p-6 backdrop-blur-md bg-white rounded-2xl",
         "border border-gray-100 shadow-soft hover:shadow-lg transition-all duration-300",
-        "min-h-[200px]"
+        "min-h-[200px] cursor-pointer"
       )}
     >
       {/* Image Container */}
