@@ -35,13 +35,11 @@ const CapabilityItem: React.FC<CapabilityItemProps> = ({ capability, index }) =>
   };
 
   const handleClick = () => {
-    const titleSlug = capability.title
-      .toLowerCase()
-      .trim()
-      .replace(/[\u200B-\u200D\uFEFF]/g, '') // Remove zero-width spaces
-      .replace(/[^a-z0-9]+/g, '-') // Replace any non-alphanumeric chars with hyphens
-      .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
-    navigate(`/capabilities/${capability._id}/${titleSlug}`);
+    if (!capability.slug?.current) {
+      console.warn(`No slug found for capability: ${capability.title}`);
+      return;
+    }
+    navigate(`/capabilities/${capability.slug.current}`);
   };
 
   return (

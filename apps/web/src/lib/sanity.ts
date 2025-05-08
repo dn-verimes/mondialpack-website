@@ -75,13 +75,67 @@ export const CAPABILITIES_QUERY = `*[_type == "capability" && language == $langu
     language,
     title,
     description
-  }
+  },
+  "slug": slug
+}`
+
+// New query to fetch a capability by slug
+export const CAPABILITY_BY_SLUG_QUERY = `*[_type == "capability" && slug.current == $slug][0] {
+  _id,
+  _type,
+  language,
+  title,
+  description,
+  icon,
+  order,
+  image,
+  category,
+  longDescription,
+  keyFeatures[] {
+    title,
+    description,
+    icon
+  },
+  specifications[] {
+    name,
+    value
+  },
+  applications,
+  benefits[] {
+    title,
+    description
+  },
+  processSteps[] {
+    title,
+    description,
+    image
+  },
+  faqs[] {
+    question,
+    answer
+  },
+  "translations": *[_type == "capability" && _id != ^._id && references(^._id)]{
+    _id,
+    language,
+    title,
+    description
+  },
+  "slug": slug.current
 }`
 
 // Helper function to get content in specific language
 export const getLocalizedContent = async (query: string, language = 'en') => {
   try {
     return await client.fetch(query, { language })
+  } catch (error) {
+    handleSanityError(error)
+  }
+}
+
+// New helper function to fetch a capability by slug
+export const getCapabilityBySlug = async (slug: string) => {
+  try {
+    return await client.fetch(CAPABILITY_BY_SLUG_QUERY, { slug })
   } catch (error) {
     handleSanityError(error)
   }

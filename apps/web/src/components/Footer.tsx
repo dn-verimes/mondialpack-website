@@ -21,16 +21,16 @@ const Footer: React.FC = () => {
               {t('footer.companyDescription')}
             </p>
             <div className="flex space-x-4">
-              <a href="https://linkedin.com" className="hover:text-primary transition-colors">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="https://facebook.com" className="hover:text-primary transition-colors">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="https://instagram.com" className="hover:text-primary transition-colors">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="https://twitter.com" className="hover:text-primary transition-colors">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                 <Twitter size={20} />
               </a>
             </div>
@@ -53,11 +53,11 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Mail className="text-primary mr-3 mt-1" size={20} />
-                <span className="text-white/80">info@mondialpack.com</span>
+                <a href="mailto:info@mondialpack.com" className="text-white/80 hover:text-primary transition-colors">info@mondialpack.com</a>
               </li>
               <li className="flex items-start">
                 <Phone className="text-primary mr-3 mt-1" size={20} />
-                <span className="text-white/80">+31 (0)53 431 00 00</span>
+                <a href="tel:+31534310000" className="text-white/80 hover:text-primary transition-colors">+31 (0)53 431 00 00</a>
               </li>
               <li className="flex items-start">
                 <MapPin className="text-primary mr-3 mt-1" size={20} />

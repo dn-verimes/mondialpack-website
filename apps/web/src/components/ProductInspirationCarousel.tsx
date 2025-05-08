@@ -1,89 +1,69 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/lib/sanity';
+import { productInspirationQuery } from '@/sanity/queries/productInspiration';
 
 interface Product {
-  id: number;
-  image: string;
-  name: string;
-  claim: string;
-  tags: string[];
+  image: {
+    asset: {
+      url: string;
+    };
+  };
+  name: {
+    en: string;
+    nl: string;
+  };
+  claim: {
+    en: string;
+    nl: string;
+  };
+  tags: Array<{
+    en: string;
+    nl: string;
+  }>;
 }
 
-const products: Product[] = [
-  {
-    id: 1,
-    image: "/assets/products/vitamin-d3.jpg",
-    name: "Vitamin D3 + K2",
-    claim: "Enhanced bone health and immune support",
-    tags: ["Vegan", "Sugar-free"]
-  },
-  {
-    id: 2,
-    image: "/assets/products/omega-3.jpg",
-    name: "Omega-3 Complex",
-    claim: "Premium fish oil with optimal EPA/DHA ratio",
-    tags: ["High-potency", "Enteric-coated"]
-  },
-  {
-    id: 3,
-    image: "/assets/products/probiotic.jpg",
-    name: "Daily Probiotic",
-    claim: "10 billion CFU with 8 clinically studied strains",
-    tags: ["Dairy-free", "Shelf-stable"]
-  },
-  {
-    id: 4,
-    image: "/assets/products/multivitamin.jpg",
-    name: "Complete Multivitamin",
-    claim: "Comprehensive daily nutrition in one capsule",
-    tags: ["Vegan", "Gluten-free"]
-  },
-  {
-    id: 5,
-    image: "/assets/products/curcumin.jpg",
-    name: "Curcumin Complex",
-    claim: "Enhanced absorption with black pepper extract",
-    tags: ["Vegan", "High-potency"]
-  },
-  {
-    id: 6,
-    image: "/assets/products/collagen.jpg",
-    name: "Collagen Peptides",
-    claim: "Type I & III collagen for skin and joint health",
-    tags: ["Unflavored", "Non-GMO"]
-  },
-  {
-    id: 7,
-    image: "/assets/products/magnesium.jpg",
-    name: "Magnesium Complex",
-    claim: "Four forms of magnesium for optimal absorption",
-    tags: ["Vegan", "Sugar-free"]
-  },
-  {
-    id: 8,
-    image: "/assets/products/ashwagandha.jpg",
-    name: "Ashwagandha Extract",
-    claim: "Standardized for maximum potency and efficacy",
-    tags: ["Vegan", "KSM-66®"]
-  }
-];
+interface ProductInspirationData {
+  title: {
+    en: string;
+    nl: string;
+  };
+  subtitle: {
+    en: string;
+    nl: string;
+  };
+  mainText: {
+    en: string;
+    nl: string;
+  };
+  products: Product[];
+}
 
 const ProductInspirationCarousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
+  const { data, isLoading } = useQuery<ProductInspirationData>({
+    queryKey: ['productInspiration'],
+    queryFn: () => client.fetch(productInspirationQuery),
+  });
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % products.length);
+    if (!data?.products) return;
+    setCurrentIndex((prev) => (prev + 1) % data.products.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+    if (!data?.products) return;
+    setCurrentIndex((prev) => (prev - 1 + data.products.length) % data.products.length);
   };
 
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
@@ -107,6 +87,10 @@ const ProductInspirationCarousel: React.FC = () => {
     }
   };
 
+  if (isLoading || !data) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <section className="py-20 bg-white">
       <div className="container">
@@ -117,9 +101,11 @@ const ProductInspirationCarousel: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">{t('home.productInspiration.title')}</h2>
+          <h2 className="text-3xl md:text-4xl font-medium text-secondary mb-4">
+            {data.title[currentLanguage as keyof typeof data.title]}
+          </h2>
           <p className="text-xl text-secondary/80 max-w-3xl mx-auto">
-            {t('home.productInspiration.subtitle')}
+            {data.subtitle[currentLanguage as keyof typeof data.subtitle]}
           </p>
         </motion.div>
 
@@ -139,62 +125,81 @@ const ProductInspirationCarousel: React.FC = () => {
           </button>
 
           {/* Carousel Container */}
-          <div
-            ref={containerRef}
-            className="overflow-hidden"
-            onMouseDown={handleDragStart}
-            onMouseUp={handleDragEnd}
-            onMouseLeave={handleDragEnd}
-            onTouchStart={handleDragStart}
-            onTouchEnd={handleDragEnd}
-          >
-            <motion.div
-              className="flex"
-              animate={{
-                x: `-${currentIndex * 100}%`,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 300,
-                damping: 30,
-              }}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div
+              ref={containerRef}
+              className="overflow-hidden"
+              onMouseDown={handleDragStart}
+              onMouseUp={handleDragEnd}
+              onMouseLeave={handleDragEnd}
+              onTouchStart={handleDragStart}
+              onTouchEnd={handleDragEnd}
             >
-              {products.map((product) => (
-                <div
-                  key={product.id}
-                  className="w-full flex-shrink-0 px-2"
-                >
-                  <div className="bg-white rounded-lg shadow-soft overflow-hidden">
-                    <div className="aspect-[4/3] relative">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="p-3">
-                      <h3 className="text-base font-medium text-secondary mb-0.5">{product.name}</h3>
-                      <p className="text-xs text-secondary/80 mb-2 line-clamp-2">{product.claim}</p>
-                      <div className="flex flex-wrap gap-1">
-                        {product.tags.map((tag, index) => (
-                          <span
-                            key={index}
-                            className="px-1.5 py-0.5 rounded-full text-[10px] bg-primary/10 text-primary"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+              <motion.div
+                className="flex"
+                animate={{
+                  x: `-${currentIndex * 100}%`,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                }}
+              >
+                {data.products.map((product, index) => (
+                  <div
+                    key={index}
+                    className="w-full flex-shrink-0 px-2"
+                  >
+                    <div className="bg-white rounded-lg shadow-soft overflow-hidden">
+                      <div className="aspect-[4/3] relative">
+                        <img
+                          src={product.image.asset.url}
+                          alt={product.name[currentLanguage as keyof typeof product.name]}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-3">
+                        <h3 className="text-base font-medium text-secondary mb-0.5">
+                          {product.name[currentLanguage as keyof typeof product.name]}
+                        </h3>
+                        <p className="text-xs text-secondary/80 mb-2 line-clamp-2">
+                          {product.claim[currentLanguage as keyof typeof product.claim]}
+                        </p>
+                        <div className="flex flex-wrap gap-1">
+                          {product.tags.map((tag, tagIndex) => (
+                            <span
+                              key={tagIndex}
+                              className="px-1.5 py-0.5 rounded-full text-[10px] bg-primary/10 text-primary"
+                            >
+                              {tag[currentLanguage as keyof typeof tag]}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Main Text Section */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-secondary"
+            >
+              <p className="text-lg leading-relaxed whitespace-pre-line">
+                {data.mainText[currentLanguage as keyof typeof data.mainText]}
+              </p>
             </motion.div>
           </div>
 
           {/* Dots Navigation */}
           <div className="flex justify-center gap-2 mt-8">
-            {products.map((_, index) => (
+            {data.products.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
@@ -218,7 +223,7 @@ const ProductInspirationCarousel: React.FC = () => {
             href="/products"
             className="inline-flex items-center text-primary hover:text-primary/80 transition-colors group"
           >
-            See 50+ more formulas
+            {t('home.productInspiration.seeMore')}
             <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
           </a>
         </motion.div>

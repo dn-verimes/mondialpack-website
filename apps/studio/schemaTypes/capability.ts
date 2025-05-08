@@ -201,6 +201,18 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: { source: 'title', maxLength: 96 },
+      validation: (Rule) => Rule.required()
+    }),
+    defineField({
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo'
+    }),
   ],
   preview: {
     select: {

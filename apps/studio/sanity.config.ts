@@ -27,7 +27,7 @@ export default defineConfig({
         {id: 'de', title: 'German'},
       ],
       // Schema types that should have translations
-      schemaTypes: ['capability'],
+      schemaTypes: ['capability', 'productInspiration'],
       languageField: 'language',
       bulkPublish: true,
     }),

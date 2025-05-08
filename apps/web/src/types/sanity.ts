@@ -3,30 +3,27 @@ import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 export interface SanityCapability {
   _id: string;
-  _type: 'capability';
+  _type: string;
   language: string;
-  title: Record<string, string>;
-  description: Record<string, string>;
+  title: string;
+  description: string;
   icon?: string;
-  image?: SanityImageSource;
-  fullSizeImage?: SanityImageSource;
-  order?: number;
-  category?: string;
-  longDescription?: PortableTextBlock[];
-  keyFeatures?: {
-    icon?: string;
-    title: string;
-    description: string;
-  }[];
-  gallery?: Array<{
-    _type: 'image';
+  order: number;
+  image?: {
+    _type: string;
     asset: {
       _ref: string;
-      _type: 'reference';
+      _type: string;
     };
     alt?: string;
-    caption?: string;
-  }>;
+  };
+  category: string;
+  longDescription?: any[];
+  keyFeatures?: {
+    title: string;
+    description: string;
+    icon?: string;
+  }[];
   specifications?: {
     name: string;
     value: string;
@@ -39,19 +36,28 @@ export interface SanityCapability {
   processSteps?: {
     title: string;
     description: string;
-    image?: SanityImageSource;
+    image?: {
+      _type: string;
+      asset: {
+        _ref: string;
+        _type: string;
+      };
+    };
   }[];
   faqs?: {
     question: string;
     answer: string;
   }[];
-  // Reference to translations in other languages
-  translations?: Array<{
+  translations?: {
     _id: string;
     language: string;
     title: string;
     description: string;
-  }>;
+  }[];
+  slug: {
+    _type: string;
+    current: string;
+  };
 }
 
 export interface SanityFormatCapability extends SanityCapability {

@@ -1,25 +1,25 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getCapabilityBySlug } from '@/lib/sanity';
+import { urlFor } from '@/lib/sanity';
+import { PortableText } from '@portabletext/react';
+import { ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
-import { useCapabilities } from '@/hooks/useCapabilities';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { urlFor } from '@/lib/sanity';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { PortableText } from '@portabletext/react';
 import type { SanityCapability } from '@/types/sanity';
 
 const CapabilityDetail = () => {
-  const { id } = useParams();
-  const { data: capabilities, isLoading } = useCapabilities();
-  const { language } = useLanguage();
+  const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
 
-  const capability = capabilities?.find((cap: SanityCapability) => cap._id === id);
+  const { data: capability, isLoading } = useQuery({
+    queryKey: ['capability', slug],
+    queryFn: () => getCapabilityBySlug(slug),
+  });
 
   if (isLoading) {
     return (
@@ -27,7 +27,7 @@ const CapabilityDetail = () => {
         <Header />
         <main>
           <div className="container py-16">
-            <Skeleton className="h-96 w-full" />
+            <div>Loading...</div>
           </div>
         </main>
         <Footer />
@@ -43,11 +43,9 @@ const CapabilityDetail = () => {
           <div className="container py-16 text-center">
             <h1 className="text-3xl font-bold mb-4">Capability Not Found</h1>
             <p className="mb-8">The capability you're looking for doesn't exist.</p>
-            <Button asChild>
-              <Link to="/capabilities">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Capabilities
-              </Link>
+            <Button onClick={() => navigate('/capabilities')}>
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Capabilities
             </Button>
           </div>
         </main>
