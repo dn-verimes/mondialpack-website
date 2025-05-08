@@ -5,6 +5,11 @@
   },
   "routes": [
     {
+      "route": "/capabilities",
+      "serve": "/index.html",
+      "statusCode": 200
+    },
+    {
       "route": "/capabilities/*",
       "serve": "/index.html",
       "statusCode": 200
